@@ -4,6 +4,11 @@
 
 ### FSF: [FSF Free Software Definition](https://www.gnu.org/philosophy/free-sw.html)
 
+* Vapaan lisenssin sovellukset tarkoittavat sovelluksia joita saa **käyttää, kopioida, jakaa, muuttaa, tutkia ja kehittää**, myös myyntitarkoituksessa. Vapaa ei kuitenkaan ole synonyymi ilmaisella, koska ollakseen todella vapaa, tulee lisenssin sallia kaikenlainen käyttö, siis myös kaupallinen. 
+* Omisteiset ("proprietary") tai "nonfree" sovellukset ovat vapaan lisenssin sovellusten vastakohta. Tällaiset sovellukset rajoittavat käyttäjän toimintaa ja pitävät kaikki narut kehittäjän käsissä.  
+* 
+
+
 
 ### Karvinen 2021: [Install Debian on VirtualBox](https://terokarvinen.com/2021/install-debian-on-virtualbox)
 
