@@ -4,17 +4,25 @@
 
 ### FSF: [FSF Free Software Definition](https://www.gnu.org/philosophy/free-sw.html)
 
-* Vapaan lisenssin sovellukset tarkoittavat sovelluksia joita saa **käyttää, kopioida, jakaa, muuttaa, tutkia ja kehittää**, myös myyntitarkoituksessa. Vapaa ei kuitenkaan ole synonyymi ilmaisella, koska ollakseen todella vapaa, tulee lisenssin sallia kaikenlainen käyttö, siis myös kaupallinen. 
+* Vapaan lisenssin sovellukset tarkoittavat sovelluksia (koodia, sovellusta itseään, se, sekä sen oheistuotteita, kuten manuaaleja) joita saa **käyttää, kopioida, jakaa, muuttaa, tutkia ja kehittää**, myös myyntitarkoituksessa. Vapaa ei kuitenkaan ole synonyymi ilmaisella, koska ollakseen todella vapaa, tulee lisenssin sallia kaikenlainen käyttö, siis myös kaupallinen. 
+* Vapauden tulee koskea sovellusta itseään, siihen käytettyä koodia, jatkokehitettyjä sovelluksia sekä sovelluksen käyttöohjeita.  
 * Omisteiset ("proprietary") tai "nonfree" sovellukset ovat vapaan lisenssin sovellusten vastakohta. Tällaiset sovellukset rajoittavat käyttäjän toimintaa ja pitävät kaikki narut kehittäjän käsissä.  
-* 
-
-
+* Vapaissa lisensseissä voi olla reunaehtoja, kuten vaatimus jatkokehitetyn sovelluksen nimen muuttamisesta tai alkuperäisten logojen poistamisesta, mutta ehdot eivät saa rajoittaa yhtäkään neljästä vapaan sovelluksen ehdoista:  
+    * Vapaus käyttää sovellusta kuten käyttäjä haluaa, kaikkiin tarkoituksiin.  
+    * Vapaus tutkia, miten sovellus toimii ja muuttaa sovellusta niin, että se toimii käyttäjän toivomusten mukaisesti. Edellytyksenä tähän on lähdekoodin avoimuus.  
+    * Vapaus jakaa sovellusta, jotta käyttäjä voi auttaa muita.  
+    * Vapaus jakaa muunneltua versiota sovelluksesta muille.  
+* Suositellaan Copyleftiä Copyrightin sijaan. Erittäin vahvasti yksinkertaistettuna Copyleftillä tarkoittaa, että sovelluksen uudelleenjakelussa ei saa lisätä ehtoja jotka rajoittavat muiden ihmisten keskeisiä oikeuksia.   
 
 ### Karvinen 2021: [Install Debian on VirtualBox](https://terokarvinen.com/2021/install-debian-on-virtualbox)
+
+* Yksityiskohtainen ja helposti noudatettava ohjeistus asennukseen.  
+* Mukava lisä lopun huomautus asentaa Guest Additionsit Virtual Box asennukselle. Ovat todella hyödylliset.  
 
 
 ### Karvinen 2016: [Raportin kirjoittaminen](https://terokarvinen.com/2006/raportin-kirjoittaminen-4)
 
+* 
 
 ### Välimäki 2005: [Rise of Open Source](http://lib.tkk.fi/Diss/2005/isbn9529187793/isbn9529187793.pdf): 5 Open Source Licenses as Alternative Governance Mechanisms: 5.1.1 - 5.1.4 (sivu 113 - 121)
 
