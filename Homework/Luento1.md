@@ -100,12 +100,24 @@ sudo dpkg -i vivaldi-stable_5.0.2497.48-1_amd64.deb
   
 Flameshot kuvakaappaustyökalu  
 sudo apt install flameshot  
-<img src="Picture/flameshotTest.png">  
+<img src="Pictures/flameshotTest.png">  
+  
+## D) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa  
+  
+Taskwarrior  
+The MIT License (https://www.opensource.org/licenses/mit-license.php)  
+https://taskwarrior.org/docs/license.html  
 
+Vivaldi  
+Ei ole minkään yhden Open Source lisenssin alla.  
+Muutokset Chromium lähdekoodiin tehty BSD lisenssin mukaisesti ja Vivaldi tarjoaa käyttöliittymänsä koodin selkomuodossa luettavaksi.  
 
-## D) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa
-
-
+Flameshot  
+Pääkoodi käyttää GPLv3 (GNU General Public License v3) lisenssiä  
+Logo Free Art Licence v1.3  
+Painikkeiden ikonit Apache License 2.0  
+https://flameshot.org/docs/overview/overview/  
+  
 ## E) Vapaaehtoinen lisätehtävä: Listaa käyttämäsi ohjelmat (esim. MS Word), kunkin ohjelman käyttötarkoitus (esim. Tekstinkäsittely) ja vastaava vapaa Linux-ohjelma (esim. LibreOffice Writer). Jos johonkin tarkoitukseen ei löydy vapaata Linux-ohjelmaa, listaa sekin.
 
 
