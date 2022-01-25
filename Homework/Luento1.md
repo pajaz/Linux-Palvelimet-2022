@@ -58,21 +58,22 @@ Log in automatically without asking for the password: \[\]
 Summary vaiheessa tarkistettu tiedot. Näyttää hyvältä.  
 Installing...
 15 minuutin jälkeen asennus valmis.     
-Reboot. Jatkuu  
+Reboot.
 
 <img src="Pictures/VDIInstallDone.png">  
 
-Login succesful, Internet works, Apps open.  
-Onnistunut sisäänkirjautuminen. Verkkoyhteys toimii, sovellukset aukeavat.
-Terminaali aukia (CTRL+ALT+T)  
+Kirjautuminen onnistu.  
+Verkkoyhteys toimii, sovellukset aukeavat.  
+Terminaali auki (CTRL+ALT+T)  
 Päivitykset:   
 sudo apt-get update  
 sudo apt-get -y dist-upgrade  
-10 minuuttia siinä meni ja huomasin, että Linuxin kernel päivitys tuli myös. Reboot.
+10 minuuttia siinä meni ja huomasin, että Linuxin kernel päivitys tuli myös. Reboot.  
 Rebootin jälkeen kaikki yhä kunnossa.  
   
 Tässä välissä asensin vielä Debianin tasksel komennon avulla Cinnamon työpöytäympäristön, koska olen tottunut siihen.  
 * sudo tasksel (Liikkuminen nuolinäppäimillä ja välilyönti valitsee asennettavat. Lopuksi Enter)  
+  
 
 ## B) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.  
 
