@@ -27,7 +27,46 @@
 ### Välimäki 2005: [Rise of Open Source](http://lib.tkk.fi/Diss/2005/isbn9529187793/isbn9529187793.pdf): 5 Open Source Licenses as Alternative Governance Mechanisms: 5.1.1 - 5.1.4 (sivu 113 - 121)
 
 
-## A) Asenna Linux joko 1) VirtualBoxiin (helpompaa) tai 2) Kokeile omaa Linux-tikkua raudalla. Tämä kohta ei vaadi asentamista suoraan raudalle (koneelle ilman virtualisointia) – jos kuitenkin asennat, ota ensin varmuuskopiot. Jos sinulla on jo Linux virtuaalikoneessa, voit kokeilla tikkua raudalla tai tehdä toisen asennuksen raportointia varten
+## A) Asenna Linux joko 1) VirtualBoxiin (helpompaa) tai 2) Kokeile omaa Linux-tikkua raudalla. Tämä kohta ei vaadi asentamista suoraan raudalle (koneelle ilman virtualisointia) – jos kuitenkin asennat, ota ensin varmuuskopiot. Jos sinulla on jo Linux virtuaalikoneessa, voit kokeilla tikkua raudalla tai tehdä toisen asennuksen raportointia varten  
+
+Asensin Virtualboxin Windows hostin https://www.virtualbox.org/wiki/Downloads sivulta ladatulla Installerilla. En tehnyt asetuksiin muutoksia asennuksen yhteydessä.
+Loin 64-bittisen Linux VM:n 
+<img src="Pictures/vdiCreated.png">  
+Virtuaalikoneen käynnistys ja mountattu debian-live-11.2.0-amd64-xfce+nonfree.iso tiedosto. (Debian 11 live non-free).  
+Boottasin GNU/Linux Live (kernel 5.10.0-10-amd64) vaihtoehtoon.  
+Testaus, että menut ja selaimet toimivat, verkkoyhteys ok.  
+Työpöydältä käyntiin Installer.  
+
+Asennus:  
+Language: American English  
+Location: Helsinki  
+Keyboard: Default Finnish  
+Partitions  
+Erase Disk: \[X\]  
+Encrypt system: \[\]  
+Boot loader location: Master Boot Record of VBOX HARDDISK (/dev/sda)  
+
+Täytetään käyttäjätiedot ja tietokoneen nimi + salasana    
+Log in automatically without asking for the password: \[\]  
+Summary vaiheessa tarkistettu tiedot. Näyttää hyvältä.  
+Installing...
+15 minuutin jälkeen asennus valmis.     
+Reboot. Jatkuu  
+<img src="Pictures/VDIInstallDone.png">  
+
+
+Login succesful, Internet works, Apps open.  
+Onnistunut sisäänkirjautuminen. Verkkoyhteys toimii, sovellukset aukeavat.
+Terminaali aukia (CTRL+ALT+T)  
+Päivitykset:   
+sudo apt-get update  
+sudo apt-get -y dist-upgrade  
+10 minuuttia siinä meni ja huomasin, että Linuxin kernel päivitys tuli myös. Reboot.
+Rebootin jälkeen kaikki yhä kunnossa.  
+  
+Tässä välissä asensin vielä Debianin tasksel komennon avulla Cinnamon työpöytäympäristön, koska olen tottunut siihen.  
+* sudo tasksel (Liikkuminen nuolinäppäimillä ja välilyönti valitsee asennettavat. Lopuksi Enter)  
+
 
 
 ## B) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.
