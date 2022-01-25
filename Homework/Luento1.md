@@ -34,9 +34,11 @@
 
 Minulla on jo Linux Debian dualboottina Windowsin kanssa ja virtuaalikoneelle asennettu Debian 11 Linuxin puolella. Teen tässä tehtävässä asennuksen käyttäen virtuaalikoneen hostina Windows 10 käyttöjärjestelmää.  
 
-Asensin Virtualboxin Windows hostin https://www.virtualbox.org/wiki/Downloads sivulta ladatulla Installerilla. En tehnyt asetuksiin muutoksia asennuksen yhteydessä.
-Loin 64-bittisen Linux VM:n 
+Asensin Virtualboxin Windows hostin https://www.virtualbox.org/wiki/Downloads sivulta ladatulla Installerilla. En tehnyt asetuksiin muutoksia asennuksen yhteydessä.  
+Loin 64-bittisen Linux VM:n  
+
 <img src="Pictures/vdiCreated.png">  
+
 Virtuaalikoneen käynnistys ja mountattu debian-live-11.2.0-amd64-xfce+nonfree.iso tiedosto. (Debian 11 live non-free).  
 Boottasin GNU/Linux Live (kernel 5.10.0-10-amd64) vaihtoehtoon.  
 Testaus, että menut ja selaimet toimivat, verkkoyhteys ok.  
