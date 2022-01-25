@@ -52,8 +52,8 @@ Summary vaiheessa tarkistettu tiedot. Näyttää hyvältä.
 Installing...
 15 minuutin jälkeen asennus valmis.     
 Reboot. Jatkuu  
-<img src="Pictures/VDIInstallDone.png">  
 
+<img src="Pictures/VDIInstallDone.png">  
 
 Login succesful, Internet works, Apps open.  
 Onnistunut sisäänkirjautuminen. Verkkoyhteys toimii, sovellukset aukeavat.
