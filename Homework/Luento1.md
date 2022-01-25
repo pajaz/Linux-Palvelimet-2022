@@ -7,7 +7,7 @@
 * Vapaan lisenssin sovellukset tarkoittavat sovelluksia (koodia, sovellusta itseään, se, sekä sen oheistuotteita, kuten manuaaleja) joita saa **käyttää, kopioida, jakaa, muuttaa, tutkia ja kehittää**, myös myyntitarkoituksessa. Vapaa ei kuitenkaan ole synonyymi ilmaisella, koska ollakseen todella vapaa, tulee lisenssin sallia kaikenlainen käyttö, siis myös kaupallinen. 
 * Vapauden tulee koskea sovellusta itseään, siihen käytettyä koodia, jatkokehitettyjä sovelluksia sekä sovelluksen käyttöohjeita.  
 * Omisteiset ("proprietary") tai "nonfree" sovellukset ovat vapaan lisenssin sovellusten vastakohta. Tällaiset sovellukset rajoittavat käyttäjän toimintaa ja pitävät kaikki narut kehittäjän käsissä.  
-* Vapaissa lisensseissä voi olla reunaehtoja, kuten vaatimus jatkokehitetyn sovelluksen nimen muuttamisesta tai alkuperäisten logojen poistamisesta, mutta ehdot eivät saa rajoittaa yhtäkään neljästä vapaan sovelluksen ehdoista:  
+* Vapaissa lisensseissä voi olla reunaehtoja, kuten vaatimus jatkokehitetyn sovelluksen nimen muuttamisesta tai alkuperäisten logojen poistamisesta, mutta ehdot eivät saa rajoittaa yhtäkään neljästä vapaan sovelluksen ehdoista (Ehdot lainattu ja käännetty otsikon linkistä):  
     * Vapaus käyttää sovellusta kuten käyttäjä haluaa, kaikkiin tarkoituksiin.  
     * Vapaus tutkia, miten sovellus toimii ja muuttaa sovellusta niin, että se toimii käyttäjän toivomusten mukaisesti. Edellytyksenä tähän on lähdekoodin avoimuus.  
     * Vapaus jakaa sovellusta, jotta käyttäjä voi auttaa muita.  
