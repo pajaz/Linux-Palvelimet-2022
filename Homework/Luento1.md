@@ -22,12 +22,17 @@
 
 ### Karvinen 2016: [Raportin kirjoittaminen](https://terokarvinen.com/2006/raportin-kirjoittaminen-4)
 
-* 
+* Hyvällä raportilla on selkeä ulkoasu ja hyvä kieliasu. Siinä on lähdeviittaukset kunnossa ja etenkin työasemilla tehtävässä testauksessa raportointi on täsmällistä ja käytetyt komennot selostettu kohta kohdalta.  
+* Todella hyvä vinkkejä raportointiin.
 
-### Välimäki 2005: [Rise of Open Source](http://lib.tkk.fi/Diss/2005/isbn9529187793/isbn9529187793.pdf): 5 Open Source Licenses as Alternative Governance Mechanisms: 5.1.1 - 5.1.4 (sivu 113 - 121)
+### Välimäki 2005: [Rise of Open Source](http://lib.tkk.fi/Diss/2005/isbn9529187793/isbn9529187793.pdf): 5 Open Source Licenses as Alternative Governance Mechanisms: 5.1.1 - 5.1.4 (sivu 113 - 121)  
 
+* Artikkeli käsittelee suhteellisen syväluotaavasti Open Source lisenssejä, niiden luokittelua käyttötarkoituksen tai historiallisuuden kautta, sekä lainopillista näkökulmaa lisenssien ehtojen toteuttamisessa/rikkomisessa.  
+* Valitettavasit minulla loppui aika ja artikkelin teksti oli osaaltaan todella hankalasti ymmärrettävää. Vaikka ymmärsin sanat, en aina ymmärtänyt, mitä kappaleessa yritettiin sanoa.  
 
 ## A) Asenna Linux joko 1) VirtualBoxiin (helpompaa) tai 2) Kokeile omaa Linux-tikkua raudalla. Tämä kohta ei vaadi asentamista suoraan raudalle (koneelle ilman virtualisointia) – jos kuitenkin asennat, ota ensin varmuuskopiot. Jos sinulla on jo Linux virtuaalikoneessa, voit kokeilla tikkua raudalla tai tehdä toisen asennuksen raportointia varten  
+
+Minulla on jo Linux Debian dualboottina Windowsin kanssa ja virtuaalikoneelle asennettu Debian 11 Linuxin puolella. Teen tässä tehtävässä asennuksen käyttäen virtuaalikoneen hostina Windows 10 käyttöjärjestelmää.  
 
 Asensin Virtualboxin Windows hostin https://www.virtualbox.org/wiki/Downloads sivulta ladatulla Installerilla. En tehnyt asetuksiin muutoksia asennuksen yhteydessä.
 Loin 64-bittisen Linux VM:n 
@@ -102,15 +107,23 @@ Flameshot kuvakaappaustyökalu
 sudo apt install flameshot  
 <img src="Pictures/flameshotTest.png">  
   
-## D) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa  
+## D) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvollisuuksia tuosta lisenssistä seuraa  
   
 ### Taskwarrior  
-The MIT License (https://www.opensource.org/licenses/mit-license.php)  
+The MIT License
 https://taskwarrior.org/docs/license.html  
 
-### Vivaldi  
+#### The MIT License (https://www.opensource.org/licenses/mit-license.php)
+
+Sovellusta saa käyttää, muokata, jakaa, tutkia omien halujensa mukaan.  
+Ainoana ehtona, on että MIT Licensen Copyright teksti liitetään mukaan sovelluksen kopioihin tai huomattaviin osiin sovelluksesta. Jälkimmäisen edellisistä ymmärrän niin, että jos sovelluksesta tehdän muokattu versio, joka pitää sisällään huomattavan osan alkuperäisestä, copyright teksti on liitettävä tähän sovellukseen. Tällainen ehto on hieman ympäripyöreä, koska huomattavuuden määritelmä on hyvin joustava.  
+Sovelluksella ei myöskään MIT Lisenssin myötä ole minkäänlaista takuuta eivätkä tekijänoikeuksien omistajat tai valmista ota mitään vastuuta sovelluksen käytöstä aiheutuvalle haitalle.  
+
+
+### Vivaldi
 Ei ole minkään yhden Open Source lisenssin alla.  
-Muutokset Chromium lähdekoodiin tehty BSD lisenssin mukaisesti ja Vivaldi tarjoaa käyttöliittymänsä koodin selkomuodossa luettavaksi.  
+Muutokset Chromium lähdekoodiin tehty BSD lisenssin mukaisesti ja Vivaldi tarjoaa käyttöliittymänsä koodin selkomuodossa luettavaksi.
+https://help.vivaldi.com/desktop/privacy/is-vivaldi-open-source/
 
 ### Flameshot  
 Pääkoodi käyttää GPLv3 (GNU General Public License v3) lisenssiä  
@@ -118,7 +131,7 @@ Logo Free Art Licence v1.3
 Painikkeiden ikonit Apache License 2.0  
 https://flameshot.org/docs/overview/overview/  
 
-#### GNU
+#### GNU (https://www.gnu.org/licenses/quick-guide-gplv3.html, )
 Käyttäjien oikeudet:  
 Vapaus käyttää sovellusta mihin vain tarkoitukseen  
 Vapaus muuttaa sovellusta omiin tarkoituksiinsa. Eli myös sovelluksen lähdekoodin on oltava saatavilla ymmärrettävässä muodossa.  
