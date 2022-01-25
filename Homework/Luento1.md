@@ -67,12 +67,40 @@ Rebootin jälkeen kaikki yhä kunnossa.
 Tässä välissä asensin vielä Debianin tasksel komennon avulla Cinnamon työpöytäympäristön, koska olen tottunut siihen.  
 * sudo tasksel (Liikkuminen nuolinäppäimillä ja välilyönti valitsee asennettavat. Lopuksi Enter)  
 
+## B) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.  
 
+sudo lshw -short -sanitize palautti virheen:   
+sudo: lshw: command not found  
+sudo apt-get install lshw  
+sudo lshw -short -sanitize  
+Palautuu lista työaseman laitteista.  
+Ensimmäinen kolumni ilmoittaa portin johon laite on kytketty.  
+Toinen kolumni ilmoittaa laitteen mount pointin Linuxin tiedostojärjestelmän sisällä.
+Kolmas kolumni on laitteen tyyppi  
+Neljännessä tarkemmat laitetiedot.  
+  
+## C) Asenna kolme itsellesi uutta ohjelmaa. Kokeile kutakin ohjelmaa sen pääasiallisessa käyttötarkoituksessa. Ota ruutukaappaus.  
 
-## B) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.
+Taskwarrior  
+sudo apt-get install taskwarrior  
+<img src="Pictures/taskwarriorTest.png">  
 
+https://taskwarrior.org/docs/start.html  
+https://taskwarrior.org/docs/commands/  
 
-## C) Asenna kolme itsellesi uutta ohjelmaa. Kokeile kutakin ohjelmaa sen pääasiallisessa käyttötarkoituksessa. Ota ruutukaappaus.
+Vivaldi selain  
+Ladataan asennustiedosto (curlin -o handle määrittää, että kohde ladataan koneelle):  
+curl -o https://downloads.vivaldi.com/stable/vivaldi-stable_5.0.2497.48-1_amd64.deb  
+Asennetaan (-i = install):  
+sudo dpkg -i vivaldi-stable_5.0.2497.48-1_amd64.deb  
+Päädytään virheeseen, koska vivaldin asennus on riippuvainen wget istä.  
+sudo apt-get install wget  
+sudo dpkg -i vivaldi-stable_5.0.2497.48-1_amd64.deb  
+<img src="Pictures/vivaldiTest.png">  
+  
+Flameshot kuvakaappaustyökalu  
+sudo apt install flameshot  
+<img src="Picture/flameshotTest.png">  
 
 
 ## D) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa
