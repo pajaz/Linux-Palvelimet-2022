@@ -134,7 +134,7 @@ Logo Free Art Licence v1.3
 Painikkeiden ikonit Apache License 2.0  
 https://flameshot.org/docs/overview/overview/  
 
-#### GNU (https://www.gnu.org/licenses/quick-guide-gplv3.html, )
+#### GNU V3 (https://www.gnu.org/licenses/quick-guide-gplv3.html, )
 Käyttäjien oikeudet:  
 Vapaus käyttää sovellusta mihin vain tarkoitukseen  
 Vapaus muuttaa sovellusta omiin tarkoituksiinsa. Eli myös sovelluksen lähdekoodin on oltava saatavilla ymmärrettävässä muodossa.  
@@ -144,7 +144,7 @@ Vapaus jakaa tekemiään muutoksia
 Sovelluksen omistajan velvollisuus on olla rikkomatta edellä mainittuja kohtia.  
 Omistaja ei saa esimerkiksi vaatia korvausta tai tiedoksiantoa, kun sovelluksen kopioita tai muunneltuja versioita jaetaan eteenpäin. Omistaja voi kuitenkin halutessaan veloittaa omasuorittamastaan jakelusta.
 
-#### Artistic License (https://www.perlfoundation.org/artistic-license-20.html)
+#### Artistic License 2.0 (https://www.perlfoundation.org/artistic-license-20.html)
 Käyttäjän oikeudet:  
 Oikeus käyttää ja muokata tuotetta omiin käyttötarkoituksiinsa.
 Oikeus sovelluksen edelleenjakeluun joko ilmaiseksi tai välitysmaksua vastaan, kunhan kaikki sisällytetyt tekijänoikeushuomautukset pysyvät mukana.  
