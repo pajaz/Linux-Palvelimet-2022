@@ -149,6 +149,10 @@ Käyttäjän oikeudet:
 Oikeus käyttää ja muokata tuotetta omiin käyttötarkoituksiinsa.
 Oikeus sovelluksen edelleenjakeluun joko ilmaiseksi tai välitysmaksua vastaan, kunhan kaikki sisällytetyt tekijänoikeushuomautukset pysyvät mukana.  
 Muokatun version jakelu on kuitenkin sallittua vain tiettyjen ehtojen täyttyessä kuten ilmoitus alkuperäisen version tekijänoikeuksien omistajalle.  
+
+#### Apache 2.0 License (https://www.apache.org/licenses/LICENSE-2.0.html)
+
+* Lisätty Apache 2.0 osio 26.1.2021
   
 ## E) Vapaaehtoinen lisätehtävä: Listaa käyttämäsi ohjelmat (esim. MS Word), kunkin ohjelman käyttötarkoitus (esim. Tekstinkäsittely) ja vastaava vapaa Linux-ohjelma (esim. LibreOffice Writer). Jos johonkin tarkoitukseen ei löydy vapaata Linux-ohjelmaa, listaa sekin.
 
