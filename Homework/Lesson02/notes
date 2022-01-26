@@ -1,0 +1,4 @@
+lshw - hyvä yhdelle tietokoneelle
+	- Sanitize piilottaa confidential dataa
+	- short järjestää tuloksen kauniisiin kolumneihin
+salt - useammalle koneelle
