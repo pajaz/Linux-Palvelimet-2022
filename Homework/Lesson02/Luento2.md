@@ -19,11 +19,11 @@
 
     * Operoiminen kansiossa vaatii superuser oikeudet. Esimerkki:  
     pajazzo@derpface:/$ touch test.txt  
-    touch: cannot touch 'test.txt': Permission denied _(Oikeudet kansion luontiin eivät riitä)_  
-    pajazzo@derpface:/$ ls -p | grep test  _(Huomataan, ettei tiedostoa tosiaan luotu)_  
-    pajazzo@derpface:$ sudo touch test.txt _(Uusi yritys superuserina)_  
+    touch: cannot touch 'test.txt': Permission denied *(Oikeudet kansion luontiin eivät riitä)*  
+    pajazzo@derpface:/$ ls -p | grep test  *(Huomataan, ettei tiedostoa tosiaan luotu)*  
+    pajazzo@derpface:$ sudo touch test.txt *(Uusi yritys superuserina)*  
     pajazzo@derpface:/$ ls -p | grep test   
-    test.txt _(Tiedosto luotu onnistuneesti)_  
+    test.txt *(Tiedosto luotu onnistuneesti)*  
 
 2. /home/  
     * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaiset kansiot/tiedostot sekä lost+found hakemiston, johon järjestelmä yrittää pelastaa korruptoituneita tai mahdollisesti korruptoituneita tiedostoja esim. kun tietokoneen virta katkeaa yllättäen kesken suorituksen.  
@@ -71,7 +71,7 @@
             6. Edellinen muokkauspäivä  
         - Voin siis mennä katselemaan käyttäjänä pajazzo käyttäjän watcher tiedostoja ja jopa suorittaa niitä, mutta en muokata.   
             - Otetaan nuo oikeudet pois:  
-            pajazzo@derpface:/home$ sudo chmod -R o-rx watcher/  _(chmodin -R rekursiivisesti kaikille sijainnin tiedostoille, -o oikeuksia others ryhmälle ja -rx poistetaan read ja execute oikeudet)_  
+            pajazzo@derpface:/home$ sudo chmod -R o-rx watcher/  *(chmodin -R rekursiivisesti kaikille sijainnin tiedostoille, -o oikeuksia others ryhmälle ja -rx poistetaan read ja execute oikeudet)*  
             pajazzo@derpface:/home$ ls  
             lost+found  pajazzo  watcher  
             pajazzo@derpface:/home$ ls -l  
@@ -105,8 +105,8 @@
 
             Käytetään [umask komentoa](https://geek-university.com/linux/set-the-default-permissions-for-newly-created-files/) määrittämään uusien tiedostojen luvat.  
 
-            pajazzo@derpface:~$ umask _(tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)_
-            0022  _(samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritus-oikeus on oletuksena poissa tiedostoilta)_  
+            pajazzo@derpface:~$ umask *(tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)*
+            0022  *(samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritus-oikeus on oletuksena poissa tiedostoilta)*  
             pajazzo@derpface:~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
             pajazzo@derpface:~$ umask  
             0077  
