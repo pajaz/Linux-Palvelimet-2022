@@ -11,11 +11,13 @@
 
 1. / eli root  
     * Koko Linuxin tiedostojärjestelmän ylin hakemisto eli juuri ja pitää siis sisällään kaikki muut tärkeät ja vähemmän tärkeät kansiot.  
+    <span style="color:#d3d3d3">
     pajazzo@derpface:/$ cd /  
     pajazzo@derpface:/$ pwd  
     /  
     pajazzo@derpface:/$ ls  
     bin  boot  dev  etc  home  initrd.img  initrd.img.old  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr var  vmlinuz  vmlinuz.old  
+    </span>
     * Operoiminen kansiossa vaatii superuser oikeudet. Esimerkki:  
     pajazzo@derpface:/$ touch test.txt  
     touch: cannot touch 'test.txt': Permission denied (Oikeudet kansion luontiin eivät riitä)  
@@ -25,7 +27,13 @@
     test.txt (Tiedosto luotu onnistuneesti)  
 
 2. /home/  
-* 
+    * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaisen kansiot/tiedostot.  
+    pajazzo@derpface:/home$ cd /home/
+    pajazzo@derpface:/home$ pwd
+    /home
+    pajazzo@derpface:/home$ ls
+    lost+found  pajazzo
+    pajazzo@derpface:/home$       
 
 
 
