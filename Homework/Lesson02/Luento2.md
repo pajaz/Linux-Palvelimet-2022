@@ -18,11 +18,11 @@
     bin  boot  dev  etc  home  initrd.img  initrd.img.old  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr var  vmlinuz  vmlinuz.old  
     * Operoiminen kansiossa vaatii superuser oikeudet. Esimerkki:  
     pajazzo@derpface:/$ touch test.txt  
-    touch: cannot touch 'test.txt': Permission denied  
-    pajazzo@derpface:/$ ls -p | grep test  
-    pajazzo@derpface:$ sudo touch test.txt   
+    touch: cannot touch 'test.txt': Permission denied (Oikeudet kansion luontiin eivät riitä)  
+    pajazzo@derpface:/$ ls -p | grep test  (Huomataan, ettei tiedostoa tosiaan luotu)  
+    pajazzo@derpface:$ sudo touch test.txt (Uusi yritys superuserina)  
     pajazzo@derpface:/$ ls -p | grep test   
-    test.txt  
+    test.txt (Tiedosto luotu onnistuneesti)  
 
 2. /home/  
 * 
