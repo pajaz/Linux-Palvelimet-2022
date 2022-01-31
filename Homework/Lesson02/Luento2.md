@@ -35,14 +35,14 @@
     pajazzo@derpface:/home$   
     * Oletuksena uusilla luoduilla käyttäjäprofiileilla on oikeus katsella toisen käyttäjän home kansion tiedostoja, mutta ei kirjoitusoikeuksia.  
         - Luodaan uusi käyttäjä koneelle:  
-        `pajazzo@derpface:/$ sudo adduser watcher  
+        pajazzo@derpface:/$ sudo adduser watcher  
         Adding user \`watcher' ...  
         Adding new group \`watcher' (1001) ...  
         Adding new user \`watcher' (1001) with group \`watcher' ...  
         Creating home directory \`/home/watcher' ...  
         Copying files from \`/etc/skel' ...  
-        New password:   
-        Retype new password:   
+        ` New password:  
+        Retype new password:     
         passwd: password updated successfully  
         Changing the user information for watcher  
         Enter the new value, or press ENTER for the default  
@@ -56,7 +56,7 @@
         total 24  
         drwx------  2 root    root    16384 Jan 20 12:31 lost+found  
         drwxr-xr-x 27 pajazzo pajazzo  4096 Jan 31 13:29 pajazzo  
-        drwxr-xr-x 15 watcher watcher  4096 Jan 31 13:40 watcher`  
+        drwxr-xr-x 15 watcher watcher  4096 Jan 31 13:40 watcher `
             
         - Rivien selitykset:
             1. Ensimmäinen kolumni ilmoittaa kansioiden ja tiedostojen käyttöoikeudet ja sen ensimmäinen merkki ilmoittaa tiedostotyypin.  
