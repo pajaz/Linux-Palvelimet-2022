@@ -167,7 +167,7 @@
 #### Mahdollisuus monitoroida työympäristön käyttäjien toimintaa vaivattomasti. Esimerkiksi selvittää kuka meni poistamaan jonkin tärkeä tiedoston.  
 [Acct](https://www.tecmint.com/how-to-monitor-user-activity-with-psacct-or-acct-tools/) vaikuttaisi käytännölliseltä työkalulta tähän.      
 
-Seuraavaksi esimerkiksi kaikki rm komennot käyttäjältä watcher. Tästä ei saa tarkkaa tietoa, mitä on poistettu, mutta komento, ajankohta ja mitä terminaalia on käytetty selviää kyselystä. Ehkä tähän tarkoitukseen löytyisi kätevämpiäkin ratkaisuja.  
+Seuraavaksi esimerkiksi kaikki rm komennot käyttäjältä watcher. Tästä ei saa tietoa, mitä on poistettu, mutta komento, ajankohta ja mitä terminaalia on käytetty selviää kyselystä. Ehkä tähän tarkoitukseen löytyisi kätevämpiäkin ratkaisuja.  
 
 pajazzo@derpface:\~$ sudo apt-get install acct  
 pajazzo@derpface:\~$ sudo lastcomm watcher | grep rm  
@@ -184,21 +184,21 @@ rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:31
 rm                     watcher  __         0.00 secs Mon Jan 31 17:30  
   
 Sovelluksella pystyisi myös suorittamaan työajanseurantaa, koska komennolla `sa -d username` saa listauksen käyttäjän päivittäisestä kirjautuneena olosta.  
-`pajazzo@derpface:~$ ac -d watcher` 
+`pajazzo@derpface:~$ ac -d watcher`  
 `Today	total        0.20`  
   
 #### Haluan hallita Github repositorioitani komentoriviltä  
 [git](https://docs.github.com/en/get-started/quickstart/set-up-git)  
-
+  
 git on komentorivillä toimiva sovellustyökalu, joka tulee asennettua aina uuteen Linux asennukseen, koska sen kautta pystyy ssh yhteydellä helposti luomaan, kloonamaan, päivittämään jne .omia Github repositorioitaan. Käyn tässä asennuksen ja konfiguraation läpi. Poistin ennen aloittamista koneeltani gitin, luodut salausavaimet, sekä ssh-agentille tallennetut tunnistetiedot.  
-
+  
 `pajazzo@derpface:~$ sudo apt-get install git`  
 `pajazzo@derpface:~$ git config --global user.name pajaz`  
 `pajazzo@derpface:~$ git config --global user.email --- redacted ---`  
   
 Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan SSH yhteys kuntoon. Tätä varten pitää luoda salausavainpari ja esimerkiksi [täältä](https://linuxkamarada.com/en/2019/07/14/using-git-with-ssh-keys/#.YfgvkvexVJc) löytyy erittäin hyvin selitetty ohje avainparin luomiseksi ja koko SSH yhteyden muodostamiseksi githubiin.  
-
-`pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "--- redacted ---"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi oma sähköpostiosoite)     
+  
+`pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "--- redacted ---"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi -C oma sähköpostiosoite)     
 `Generating public/private rsa key pair.`  
 `Enter file in which to save the key (/home/pajazzo/.ssh/id_rsa): `    
 `Created directory '/home/pajazzo/.ssh'.`  
@@ -210,12 +210,12 @@ Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan SSH yhteys kuntoon
 Private ja public keyt luotu. Seuraavaksi asetetaan Githubiin juuri luotu public key.  
   
 `pajazzo@derpface:~$ cat ~/.ssh/id_rsa.pub`  
-Kopioi terminaaliin tulostuva sekava, omaan sähköpostiosoitteeseen päättyvä viesti ja liitä se oman Github profiilin asetukset kohdasta löytyvään [SSH and GPG Keys](https://github.com/settings/keys) valikon kohtaan SSH keys (New SSH key). Anna koneelle nimi ja klikkaa tallenna.  
-
+Kopioi terminaaliin tulostuva sekava, omaan sähköpostiosoitteeseen päättyvä viesti ja liitä se oman Github profiilin asetuksista löytyvään [SSH and GPG Keys](https://github.com/settings/keys) valikon kohtaan SSH keys (New SSH key). Anna koneelle nimi ja klikkaa tallenna.  
+  
 Lisätään vielä ssh-agenttiin käytön helpottamiseksi luotu private key (salasanaa ei tarvitse jatkuvasti syötellä).  
-
+  
 `pajazzo@derpface:~$ ssh-add ~/.ssh/id_rsa`  
-`Enter passphrase for /home/pajazzo/.ssh/id_rsa: `  
+`Enter passphrase for /home/pajazzo/.ssh/id_rsa: ` (Aiemmin luotu salasana)  
 `Identity added: /home/pajazzo/.ssh/id_rsa `  
   
 Yhteyden testaus:  
@@ -225,7 +225,7 @@ Yhteyden testaus:
 `Are you sure you want to continue connecting (yes/no/[fingerprint])? yes`  
 `Warning: Permanently added 'github.com,140.82.121.3' (ECDSA) to the list of known hosts.`  
 `Hi pajaz! You've successfully authenticated, but GitHub does not provide shell access.`  
-
+  
 Toimii. Seuraavaksi kloonaan repositorion githubista koneelleni, päivitän nämä ja edellisen tehtävän muistiinpanot oikeaan tiedostoon ja päivitän pushilla kyseiseen repositorioon. (laitan vain komennot ilman palautetta tähän. Paitsi, jos tulee virheitä)    
 `pajazzo@derpface:~$ cd Projects/`  
 `pajazzo@derpface:~/Projects$ git clone git@github.com:pajaz/Linux-Palvelimet-2022.git`  
@@ -296,4 +296,4 @@ Luettavissa.
 
 ## Bonus: Recursive. Pystytkö etsimään kaikki rivit, joilla lukee Tero isolla tai pienellä, kun tiedostoja on sisäkkäisissä kansioissa? (Eli tutkimaan jonkin kansion kaikkine alihakemistoineen)
 
-# g) Sshecrets. Vaikeampi vapaaehtoinen bonuskohta, ei ole opetettu vielä: Asenna SSH-demoni. Kokeile omalla ssh-palvelimellasi jotain seuraavista: ssh-copy-id, sshfs, scp tai git. (Helpoin lienee scp: ‘scp foo.txt tero@example.com:’)
+##   g) Sshecrets. Vaikeampi vapaaehtoinen bonuskohta, ei ole opetettu vielä: Asenna SSH-demoni. Kokeile omalla ssh-palvelimellasi jotain seuraavista: ssh-copy-id, sshfs, scp tai git. (Helpoin lienee scp: ‘scp foo.txt tero@example.com:’)
