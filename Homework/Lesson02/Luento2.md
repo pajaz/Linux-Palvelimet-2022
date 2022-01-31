@@ -159,30 +159,78 @@
         auth.log.1  
         pajazzo@derpface:/var/log$ sudo cat nano auth.log | grep watcher  (en laita tähän koko grepattua lokia)  
         `Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt`  
-        Kuten nähdään, käyttäjä watcher yritti sudo oikeuksia käyttäen luoda test.txt tiedoston käyttäjän pajazzo kotihakemistoon. Toiminta estettiin puuttuvien oikeuksien takia ja asia raportoitiin lokiin.  
+        Kuten nähdään, käyttäjä watcher yritti sudo oikeuksia käyttäen luoda test.txt tiedoston käyttäjän pajazzo kotihakemiston juureen. Toiminta estettiin puuttuvien oikeuksien takia ja asia raportoitiin lokiin.  
 
 
-
+## b) My CLI. Keksi jokin asia, jota haluaisit tehdä komentokehotteessa. Etsi ja asenna komentokehotteen paketinhallinnasta ohjelmat, joilla asian voi ratkaista. Asenna ainakin kolme itsellesi uutta komentorivillä (command line interface, CLI) tai tekstitilassa (text user interface, TUI) toimivaa ohjelmaa. Näytä, miten kuvitteellista ongelmaa voi ratkoa näillä ohjelmilla. Voit valita jonkin helpon tai yksinkertaistetun esimerkin.  
   
+#### Mahdollisuus monitoroida työympäristön käyttäjien toimintaa vaivattomasti. Esimerkiksi selvittää kuka meni poistamaan jonkin tärkeä tiedoston.  
+[Acct](https://www.tecmint.com/how-to-monitor-user-activity-with-psacct-or-acct-tools/) vaikuttaisi käytännölliseltä työkalulta tähän.      
+
+Seuraavaksi esimerkiksi kaikki rm komennot käyttäjältä watcher. Tästä ei saa tarkkaa tietoa, mitä on poistettu, mutta komento, ajankohta ja mitä terminaalia on käytetty selviää kyselystä. Ehkä tähän tarkoitukseen löytyisi kätevämpiäkin ratkaisuja.  
+
+pajazzo@derpface:~$ sudo apt-get install acct  
+pajazzo@derpface:~$ sudo lastcomm watcher | grep rm  
+pool-gnome-term      X watcher  __         1.72 secs Mon Jan 31 17:41  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:44  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:44  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:43  
+rm                     watcher  __         0.00 secs Mon Jan 31 17:41  
+rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:31  
+rm                     watcher  __         0.00 secs Mon Jan 31 17:30  
+  
+Sovelluksella pystyisi myös suorittamaan työajanseurantaa, koska komennolla `sa -d username` saa listauksen käyttäjän päivittäisestä kirjautuneena olosta.  
+`pajazzo@derpface:~$ ac -d watcher` 
+`Today	total        0.20`  
+  
+#### Haluan hallita Github repositorioitani komentoriviltä  
+[git](https://docs.github.com/en/get-started/quickstart/set-up-git)  
+
+git on komentorivillä toimiva sovellustyökalu, joka tulee asennettua aina uuteen Linux asennukseen, koska sen kautta pystyy ssh yhteydellä helposti luomaan, kloonamaan, päivittämään yms. omia Github repositorioitaan. Käyn tässä lyhyesti asennuksen ja konfiguraation läpi.     
+
+`pajazzo@derpface:~$ sudo apt-get install git`  
+`pajazzo@derpface:~$ git config --global user.name pajaz`  
+`pajazzo@derpface:~$ git config --global user.email --- redacted ---`  
+  
+Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan ssh yhteys kuntoon. Tätä varten pitää luoda salausavainpari ja esimerkiksi [täältä](https://linuxkamarada.com/en/2019/07/14/using-git-with-ssh-keys/#.YfgvkvexVJc) löytyy erittäin hyvin selitetty ohje avainparin luomiseksi ja koko ssh yhteyden muodostamiseksi githubiin.  
+
+`pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "--- redacted ---"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi oma sähköpostiosoite)     
+`Generating public/private rsa key pair.`  
+`Enter file in which to save the key (/home/pajazzo/.ssh/id_rsa): `    
+`Created directory '/home/pajazzo/.ssh'.`  
+`Enter passphrase (empty for no passphrase): `  
+`Enter same passphrase again: `  (Kannattaa muistaa tämä tai pitää ainakin saatavilla, koska jouduin itse tekemään tämän osion uusiksi jätettyäni salasanan toisella laitteella sijaitsevaan salasanan manageriin..)  
+`Your identification has been saved in /home/pajazzo/.ssh/id_rsa`  
+`Your public key has been saved in /home/pajazzo/.ssh/id_rsa.pub`  
+  
+Private ja public keyt luotu. Seuraavaksi asetetaan Githubiin luotu public key.  
+  
+`pajazzo@derpface:~$ cat ~/.ssh/id_rsa.pub`  
+Kopioi terminaaliin tulostuva sekava, omaan sähköpostiosoitteeseen päättyvä viesti ja liitä se oman Github profiilin asetukset kohdasta löytyvään [SSH and GPG Keys](https://github.com/settings/keys) valikon kohtaan SSH keys (New SSH key). Anna koneelle nimi ja klikkaa tallenna.  
+
+Lisätään vielä ssh-agenttiin käytön helpottamiseksi luotu private key (salasanaa ei tarvitse jatkuvasti syötellä).  
+
+`pajazzo@derpface:~$ ssh-add ~/.ssh/id_rsa`
+`Enter passphrase for /home/pajazzo/.ssh/id_rsa: `
+`Identity added: /home/pajazzo/.ssh/id_rsa `
+  
+Yhteyden testaus:  
+`pajazzo@derpface:~$ ssh -T git@github.com`  
+`The authenticity of host 'github.com (140.82.121.3)' can't be established.`  
+`ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.`  
+`Are you sure you want to continue connecting (yes/no/[fingerprint])? yes`  
+`Warning: Permanently added 'github.com,140.82.121.3' (ECDSA) to the list of known hosts.`  
+`Hi pajaz! You've successfully authenticated, but GitHub does not provide shell access.`  
+
+Toimii. Seuraavaksi kloonaan repositorion githubista koneelleni, ja päivitän nämä muutokset kyseiseen repositorioon.  
 
 
 
- 
 
-                
-
-
-
-
-
-
-
-
-
-
-
-
-## b) My CLI. Keksi jokin asia, jota haluaisit tehdä komentokehotteessa. Etsi ja asenna komentokehotteen paketinhallinnasta ohjelmat, joilla asian voi ratkaista. Asenna ainakin kolme itsellesi uutta komentorivillä (command line interface, CLI) tai tekstitilassa (text user interface, TUI) toimivaa ohjelmaa. Näytä, miten kuvitteellista ongelmaa voi ratkoa näillä ohjelmilla. Voit valita jonkin helpon tai yksinkertaistetun esimerkin.
 
 ## c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
