@@ -157,7 +157,7 @@
         pajazzo@derpface:/var/log$ sudo ls |grep auth  
         auth.log  
         auth.log.1  
-        pajazzo@derpface:/var/log$ sudo cat nano auth.log | grep watcher  (en laita tähän koko grepattua lokia)  
+        pajazzo@derpface:/var/log$ sudo cat auth.log | grep watcher  (en laita tähän koko grepattua lokia vaan vain tuon kiinnostavan rivin)  
         `Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt`  
         Kuten nähdään, käyttäjä watcher yritti sudo oikeuksia käyttäen luoda test.txt tiedoston käyttäjän pajazzo kotihakemiston juureen. Toiminta estettiin puuttuvien oikeuksien takia ja asia raportoitiin lokiin.  
 
@@ -169,8 +169,8 @@
 
 Seuraavaksi esimerkiksi kaikki rm komennot käyttäjältä watcher. Tästä ei saa tarkkaa tietoa, mitä on poistettu, mutta komento, ajankohta ja mitä terminaalia on käytetty selviää kyselystä. Ehkä tähän tarkoitukseen löytyisi kätevämpiäkin ratkaisuja.  
 
-pajazzo@derpface:~$ sudo apt-get install acct  
-pajazzo@derpface:~$ sudo lastcomm watcher | grep rm  
+pajazzo@derpface:\~$ sudo apt-get install acct  
+pajazzo@derpface:\~$ sudo lastcomm watcher | grep rm  
 pool-gnome-term      X watcher  __         1.72 secs Mon Jan 31 17:41  
 rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
 rm                     watcher  pts/2      0.00 secs Mon Jan 31 17:45  
@@ -190,33 +190,33 @@ Sovelluksella pystyisi myös suorittamaan työajanseurantaa, koska komennolla `s
 #### Haluan hallita Github repositorioitani komentoriviltä  
 [git](https://docs.github.com/en/get-started/quickstart/set-up-git)  
 
-git on komentorivillä toimiva sovellustyökalu, joka tulee asennettua aina uuteen Linux asennukseen, koska sen kautta pystyy ssh yhteydellä helposti luomaan, kloonamaan, päivittämään yms. omia Github repositorioitaan. Käyn tässä lyhyesti asennuksen ja konfiguraation läpi.     
+git on komentorivillä toimiva sovellustyökalu, joka tulee asennettua aina uuteen Linux asennukseen, koska sen kautta pystyy ssh yhteydellä helposti luomaan, kloonamaan, päivittämään jne .omia Github repositorioitaan. Käyn tässä asennuksen ja konfiguraation läpi. Poistin ennen aloittamista koneeltani gitin, luodut salausavaimet, sekä ssh-agentille tallennetut tunnistetiedot.  
 
 `pajazzo@derpface:~$ sudo apt-get install git`  
 `pajazzo@derpface:~$ git config --global user.name pajaz`  
 `pajazzo@derpface:~$ git config --global user.email --- redacted ---`  
   
-Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan ssh yhteys kuntoon. Tätä varten pitää luoda salausavainpari ja esimerkiksi [täältä](https://linuxkamarada.com/en/2019/07/14/using-git-with-ssh-keys/#.YfgvkvexVJc) löytyy erittäin hyvin selitetty ohje avainparin luomiseksi ja koko ssh yhteyden muodostamiseksi githubiin.  
+Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan SSH yhteys kuntoon. Tätä varten pitää luoda salausavainpari ja esimerkiksi [täältä](https://linuxkamarada.com/en/2019/07/14/using-git-with-ssh-keys/#.YfgvkvexVJc) löytyy erittäin hyvin selitetty ohje avainparin luomiseksi ja koko SSH yhteyden muodostamiseksi githubiin.  
 
 `pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "--- redacted ---"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi oma sähköpostiosoite)     
 `Generating public/private rsa key pair.`  
 `Enter file in which to save the key (/home/pajazzo/.ssh/id_rsa): `    
 `Created directory '/home/pajazzo/.ssh'.`  
 `Enter passphrase (empty for no passphrase): `  
-`Enter same passphrase again: `  (Kannattaa muistaa tämä tai pitää ainakin saatavilla, koska jouduin itse tekemään tämän osion uusiksi jätettyäni salasanan toisella laitteella sijaitsevaan salasanan manageriin..)  
+`Enter same passphrase again: `  (Kannattaa muistaa tämä tai pitää ainakin saatavilla. Jouduin tekemään tämän osion uusiksi jätettyäni salasanan toisella laitteella sijaitsevaan salasanamanageriin..)  
 `Your identification has been saved in /home/pajazzo/.ssh/id_rsa`  
 `Your public key has been saved in /home/pajazzo/.ssh/id_rsa.pub`  
   
-Private ja public keyt luotu. Seuraavaksi asetetaan Githubiin luotu public key.  
+Private ja public keyt luotu. Seuraavaksi asetetaan Githubiin juuri luotu public key.  
   
 `pajazzo@derpface:~$ cat ~/.ssh/id_rsa.pub`  
 Kopioi terminaaliin tulostuva sekava, omaan sähköpostiosoitteeseen päättyvä viesti ja liitä se oman Github profiilin asetukset kohdasta löytyvään [SSH and GPG Keys](https://github.com/settings/keys) valikon kohtaan SSH keys (New SSH key). Anna koneelle nimi ja klikkaa tallenna.  
 
 Lisätään vielä ssh-agenttiin käytön helpottamiseksi luotu private key (salasanaa ei tarvitse jatkuvasti syötellä).  
 
-`pajazzo@derpface:~$ ssh-add ~/.ssh/id_rsa`
-`Enter passphrase for /home/pajazzo/.ssh/id_rsa: `
-`Identity added: /home/pajazzo/.ssh/id_rsa `
+`pajazzo@derpface:~$ ssh-add ~/.ssh/id_rsa`  
+`Enter passphrase for /home/pajazzo/.ssh/id_rsa: `  
+`Identity added: /home/pajazzo/.ssh/id_rsa `  
   
 Yhteyden testaus:  
 `pajazzo@derpface:~$ ssh -T git@github.com`  
@@ -226,15 +226,69 @@ Yhteyden testaus:
 `Warning: Permanently added 'github.com,140.82.121.3' (ECDSA) to the list of known hosts.`  
 `Hi pajaz! You've successfully authenticated, but GitHub does not provide shell access.`  
 
-Toimii. Seuraavaksi kloonaan repositorion githubista koneelleni, ja päivitän nämä muutokset kyseiseen repositorioon.  
+Toimii. Seuraavaksi kloonaan repositorion githubista koneelleni, päivitän nämä ja edellisen tehtävän muistiinpanot oikeaan tiedostoon ja päivitän pushilla kyseiseen repositorioon. (laitan vain komennot ilman palautetta tähän. Paitsi, jos tulee virheitä)    
+`pajazzo@derpface:~$ cd Projects/`  
+`pajazzo@derpface:~/Projects$ git clone git@github.com:pajaz/Linux-Palvelimet-2022.git`  
+`pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ git commit -a -m "Luento2.md acct ja git asennukset ok"`  
+`pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ git push origin main`  
+`pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ `  
 
+Ei virheitä ja Githubin puolellakin muutamia kirjoitusvirheitä lukuunottamatta kaikki näyttää hyvältä.   
+
+#### 
 
 
 
 
 ## c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
+Esimerkki epäonnistuneesta tapahtumasta ja lokirivin analyysi tulikin jo tehtyä tämä dokumentin /var/log/ esittelykohdassa:
+Käytetty komento oli seuraava:  
+watcher@derpface:/$ sudo touch pajazzo/test.txt  
+
+Ja lokin tutkinta:  
+pajazzo@derpface:/$ cd var/log  
+pajazzo@derpface:/var/log$ sudo ls | grep auth  
+auth.log  
+auth.log.1  
+pajazzo@derpface:/var/log$ sudo cat auth.log | grep watcher  (en laita tähän koko grepattua lokia vaan vain tuon kiinnostavan rivin)  
+Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt  
+
+Kuten nähdään, käyttäjä watcher yritti ilmoitettuna ajankohtana derpface hostilla, sudo oikeuksia käyttäen luoda test.txt tiedoston touch sovellusta käyttäen (touchin tiedostosijainti /usr/bin/touch) käyttäjän pajazzo kotihakemiston juureen käyttäen terminaali istuntoa pts/2 (tämän voi aukiolevassa terminaalissa tarkistaa tty komennolla). Toiminta estettiin puuttuvien oikeuksien takia (user NOT in sudoers) ja asia raportoitiin lokiin. USER kohtaa en oikein osaa analysoida, mutta veikkaan, että tuo on lokitiedon lisännyt käyttäjä, tässä tapauksessa root.  
+  
 ## d) The Friendly M. Näytä 2-3 kuvaavaa esimerkkiä grep-komennon käytöstä. Ohjeita löytyy 'man grep' ja tietysti verkosta.
+
+Itse käytän grep komentoa aika paljon, lähinnä siistiäkseni jonkin toisen komennon tulosteesta näkyville vain itseäni kiinnostavat rivit.  Esimerkki vaikkapa tämän dokumentin [Acct asennus kohdasta](https://github.com/pajaz/Linux-Palvelimet-2022/blob/main/Homework/Lesson02/Luento2.md#mahdollisuus-monitoroida-ty%C3%B6ymp%C3%A4rist%C3%B6n-k%C3%A4ytt%C3%A4jien-toimintaa-vaivattomasti-esimerkiksi-selvitt%C3%A4%C3%A4-kuka-meni-poistamaan-jonkin-t%C3%A4rke%C3%A4-tiedoston) jossa olen pipelinannut lastcomm:in palautteen näyttämään vain tiettyä komentoa koskevat tiedot.  
+
+Laitan toiseksi esimerkiksi kuinka grepillä voi jättää tuloksista pois ehtoon asetetun rivin:  
+Minulla on tiedosto text.txt kotihakemistossani. Tiedosto on täynnä numero rivejä, mutta seassa on joitain rivejä joissa on sanoja. Grepin avulla voidaan jättää tulostuksesta pois rivit jotka sisältävät numeroita.  
+`pajazzo@derpface:~$ grep -c "" text.txt`  
+69` (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
+`pajazzo@derpface:~$ grep -v "[0-9]" text.txt`  
+Tämä  
+On  
+Tiedosto  
+  
+Jonka  
+Sanoma  
+On  
+Vaikeasti  
+Luettavissa.  
+  
+(-v:llä käännetään ehto toisinpäin ja \[0-9\] pitää sisällään kaikki numerot)  
+  
+`pajazzo@derpface:~$ grep -v "[0-9]" text.txt | grep -iv vaikeasti`   
+Tämä  
+On  
+Tiedosto  
+  
+Jonka  
+Sanoma  
+On  
+Luettavissa.  
+  
+(|-operaattorin avulla annetaan ensimmäisen grepin tuloste toisen grepin käsiteltäväksi ja -i kertoo komennolla, ettei sen tarvitse välittää isoista ja pienistä kirjaimista)  
+  
 
 ## e) Pwnkit. Päivitä kaikki Linux-ohjelmat ja asenna tietoturvapäivitykset.
 
