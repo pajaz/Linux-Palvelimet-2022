@@ -9,6 +9,31 @@
   
 ## a) FHS. Esittele kansiot, jotka on listattu "Command Line Basics Revisited" kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
 
+1. / eli root  
+    * Koko Linuxin tiedostojärjestelmän ylin hakemisto eli juuri ja pitää siis sisällään kaikki muut tärkeät ja vähemmän tärkeät kansiot.  
+    pajazzo@derpface:/$ cd /  
+    pajazzo@derpface:/$ pwd  
+    /  
+    pajazzo@derpface:/$ ls  
+    bin  boot  dev  etc  home  initrd.img  initrd.img.old  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr var  vmlinuz  vmlinuz.old  
+    * Operoiminen kansiossa vaatii superuser oikeudet. Esimerkki:  
+    pajazzo@derpface:/$ touch test.txt  
+    touch: cannot touch 'test.txt': Permission denied  
+    pajazzo@derpface:/$ ls -p | grep test  
+    pajazzo@derpface:$ sudo touch test.txt   
+    pajazzo@derpface:/$ ls -p | grep test   
+    test.txt  
+
+2. /home/  
+* 
+
+
+
+
+
+
+
+
 ## b) My CLI. Keksi jokin asia, jota haluaisit tehdä komentokehotteessa. Etsi ja asenna komentokehotteen paketinhallinnasta ohjelmat, joilla asian voi ratkaista. Asenna ainakin kolme itsellesi uutta komentorivillä (command line interface, CLI) tai tekstitilassa (text user interface, TUI) toimivaa ohjelmaa. Näytä, miten kuvitteellista ongelmaa voi ratkoa näillä ohjelmilla. Voit valita jonkin helpon tai yksinkertaistetun esimerkin.
 
 ## c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
