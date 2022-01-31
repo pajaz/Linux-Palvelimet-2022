@@ -26,7 +26,7 @@
     test.txt _(Tiedosto luotu onnistuneesti)_  
 
 2. /home/  
-    * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaisen kansiot/tiedostot sekä lost+found hakemiston, johon järjestelmä yrittää pelastaa korruptoituneita tai mahdollisesti korruptoituneita tiedostoja esim. kun tietokoneen virta katkeaa yllättäen kesken suorituksen.  
+    * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaiset kansiot/tiedostot sekä lost+found hakemiston, johon järjestelmä yrittää pelastaa korruptoituneita tai mahdollisesti korruptoituneita tiedostoja esim. kun tietokoneen virta katkeaa yllättäen kesken suorituksen.  
     pajazzo@derpface:/home$ cd /home/  
     pajazzo@derpface:/home$ pwd  
     /home  
@@ -71,7 +71,7 @@
             6. Edellinen muokkauspäivä  
         - Voin siis mennä katselemaan käyttäjänä pajazzo käyttäjän watcher tiedostoja ja jopa suorittaa niitä, mutta en muokata.   
             - Otetaan nuo oikeudet pois:  
-            pajazzo@derpface:/home$ sudo chmod o-rx watcher/  _(chmodin -o tarkoittaa oikeuksia others ja -rx poistetaan read ja execute oikeudet)_  
+            pajazzo@derpface:/home$ sudo chmod -R o-rx watcher/  _(chmodin -R rekursiivisesti kaikille sijainnin tiedostoille, -o oikeuksia others ryhmälle ja -rx poistetaan read ja execute oikeudet)_  
             pajazzo@derpface:/home$ ls  
             lost+found  pajazzo  watcher  
             pajazzo@derpface:/home$ ls -l  
@@ -81,6 +81,55 @@
             drwxr-x--- 15 watcher watcher  4096 Jan 31 13:40 watcher  
             pajazzo@derpface:/home$ cd watcher/  
             bash: cd: watcher/: Permission denied  
+            pajazzo@derpface:/home$ su  
+            Password:   
+            root@derpface:/home# cd watcher/   
+            root@derpface:/home/watcher# ls -l  
+            total 32  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Desktop  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Documents  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Downloads  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Music  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Pictures  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Public  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Templates  
+            drwxr-x--- 2 watcher watcher 4096 Jan 31 13:36 Videos  
+              
+            Kuten nähdään oikeudet on nyt poistettu sekä kotikansiosta, että sen alikansioilta. Tein samat komennot käyttäjälle pajazzo, koska en jaksa alkaa leikkimään enempää tuolla uudella tunnuksella. Eli poistin others ryhmältä rekursiivisesti kaikki oikeudet käyttäjän pajazzo home -kansioon.  
+            Nyt ongelmana on, että uusia tiedostoja luodessani on others -ryhmällä kuitenkin lukuoikeus näihin tiedostoihin:  
+            pajazzo@derpface:~$ pwd  
+            /home/pajazzo  
+            pajazzo@derpface:~$ touch test.txt   
+            pajazzo@derpface:~$ ls -l | grep test  
+            -rw-r--r-- 1 pajazzo pajazzo 0 Jan 31 15:21 test.txt  
+
+            Käytetään [umask komentoa](https://geek-university.com/linux/set-the-default-permissions-for-newly-created-files/) määrittämään uusien tiedostojen luvat.  
+
+            pajazzo@derpface:~$ umask _(tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)_
+            0022  _(samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritus-oikeus on oletuksena poissa tiedostoilta)_  
+            pajazzo@derpface:~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
+            pajazzo@derpface:~$ umask  
+            0077  
+            pajazzo@derpface:~$ touch test1.txt && mkdir test1  
+            pajazzo@derpface:~$ ls -l | grep test  
+            drwx------ 2 pajazzo pajazzo     4096 Jan 31 15:37 test1  
+            -rw------- 1 pajazzo pajazzo        0 Jan 31 15:37 test1.txt  
+
+            Oikeudet näyttäisi olevan kunnossa ja home -sijainti vain minun käytössäni.  
+
+    * Tämä tehtävä lähti vähän laukalle, koska minua alkoi kiinnostaa tiedostojen pääsyoikeudet.  
+
+
+
+
+
+
+
+
+            
+
+3. /home/pajazzo/  
+    * Käyttäjän oma kansio johon käyttäjä voi tallentaa dataa pysyvästi.  
                 
 
 
