@@ -97,21 +97,21 @@
               
             Kuten nähdään oikeudet on nyt poistettu sekä kotikansiosta, että sen alikansioilta. Tein samat komennot käyttäjälle pajazzo, koska en jaksa alkaa leikkimään enempää tuolla uudella tunnuksella. Eli poistin others ryhmältä rekursiivisesti kaikki oikeudet käyttäjän pajazzo home -kansioon.  
             Nyt ongelmana on, että uusia tiedostoja luodessani on others -ryhmällä ja pajazzon käyttäjäryhmällä kuitenkin lukuoikeus näihin tiedostoihin:  
-            pajazzo@derpface:\~$ pwd  
+            pajazzo@derpface:~$ pwd  
             /home/pajazzo  
-            pajazzo@derpface:\~$ touch test.txt   
-            pajazzo@derpface:\~$ ls -l | grep test  
+            pajazzo@derpface:~$ touch test.txt   
+            pajazzo@derpface:~$ ls -l | grep test  
             -rw-r--r-- 1 pajazzo pajazzo 0 Jan 31 15:21 test.txt  
 
             Käytetään [umask komentoa](https://geek-university.com/linux/set-the-default-permissions-for-newly-created-files/) määrittämään uusien tiedostojen luvat.  
               
-            pajazzo@derpface:\~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
+            pajazzo@derpface:~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
             0022 (samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others -ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritusoikeus (x = execute) on oletuksena poissa tiedostoilta)  
-            pajazzo@derpface:\~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
-            pajazzo@derpface:\~$ umask  
+            pajazzo@derpface:~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
+            pajazzo@derpface:~$ umask  
             0077  
-            pajazzo@derpface:\~$ touch test1.txt && mkdir test1  
-            pajazzo@derpface:\~$ ls -l | grep test  
+            pajazzo@derpface:~$ touch test1.txt && mkdir test1  
+            pajazzo@derpface:~$ ls -l | grep test  
             drwx------ 2 pajazzo pajazzo     4096 Jan 31 15:37 test1  
             -rw------- 1 pajazzo pajazzo        0 Jan 31 15:37 test1.txt  
 
@@ -127,11 +127,11 @@
         -rw-------  1 pajazzo pajazzo 24598 Jan 31 16:06 .bash_history  
         -rw-r-----  1 pajazzo pajazzo   220 Jan 20 12:44 .bash_logout  
         **-rw-r-----  1 pajazzo pajazzo  3537 Jan 31 15:34 .bashrc**  
-        + .bashrc tiedoston sisältö suoritetaan joka kerta, kun uusi terminaali-istunto avataan (kuten edellisessä tehtävässä huomattiin, muokattuani tiedostoa käynnistin uuden terminaali-istunnon)  
+        + .bashrc tiedoston sisältö suoritetaan joka kerta, kun uusi terminaali-istunto avataan (kuten edellisessä tehtävässä huomattiin, kun muokattuani tiedostoa, käynnistin uuden terminaali-istunnon)  
 
 4. /etc/  
-    * Kaikkea kivaa eli järjestelmän konfiguraatiot. 
-    * Koska en käyttänyt non-free p ratkaisua oman Debian asennukseni tekemiseksi jouduin käydä muokkaamassa seuraavaa tiedostoa, jotta saan joitain proprietary ajureita asennuttua:   
+    * Kaikkea kivaa eli järjestelmän konfiguraatiot.  
+    * Koska en käyttänyt non-free ratkaisua oman Debian asennukseni tekemiseksi jouduin käydä muokkaamassa seuraavaa tiedostoa, jotta saan joitain proprietary ajureita asennuttua:   
     pajazzo@derpface:/$ cd etc/apt/  
     pajazzo@derpface:/etc/apt$ ls  
     apt.conf.d  auth.conf.d  listchanges.conf  listchanges.conf.d  preferences.d  sources.list  sources.list~  sources.list.d  trusted.gpg  trusted.gpg~  trusted.gpg.d  
@@ -142,11 +142,29 @@
 
 5. /media/  
     * Ulkoiset mediat kuten jaetut kovalevyt, usb-tikut jne.
-    * Itselläni tuolta löytyy yksi ositus HDD levystä, jota käytän jakona Windowsin ja Linuxin välillä. Pitää laittaa se [auto-mounttaavaksi](https://help.ubuntu.com/community/Fstab) jossain välissä.  
+    * Itselläni tuolta löytyy yksi ositus HDD levystä, jota käytän jakona Windowsin ja Linuxin välillä. Pitää laittaa se auto-mounttaavaksi (/etc/fstab) jossain välissä vaikka aika vähän tuota tulee käytettyä.  
+    * Tässä kuitenkin komennot joilla mounttaan sen tarvittaessa luku- ja kirjoitusoikeuksin.  
     pajazzo@derpface:/$ sudo mount -o rw /dev/sda3 /media/pajazzo/Shared  
     pajazzo@derpface:/$ cd media/pajazzo/  
     pajazzo@derpface:/media/pajazzo$ ls -l  
     drwxrwxrwx 1 root root 8192 Jan 24 21:06 Shared  
+
+6. /var/log/  
+    * Järjestelmän lokitiedostoja.  
+    * Täältä voi löytää apua erinäisten ongelmatilanteiden selvittelyyn. Jos esimerkiksi Linuxin käynnistyksenvaiheessa tapahtuu jotain odottamatonta, löytyy sijainnista boot.log.#.tmp tiedostoja.  Tai jos esimerkiksi käyttöoikeuksien kanssa on ongelmaa löytyy auth.log tiedostoja.  
+    * Tässä pieni testi. Kirjauduin sisään käyttäjänä watcher ja yritin päästä käsiksi käyttäjän pajazzo home -kansioon sudo käyttäjänä. Tämä epäonnistui ja sain ilmoituksen, että tapahtumasta kirjoitetaan raportti auth.logiin. Tässä auth logiin tallennettu rivi:  
+        + pajazzo@derpface:/$ cd var/log  
+        pajazzo@derpface:/var/log$ sudo ls |grep auth  
+        auth.log  
+        auth.log.1  
+        pajazzo@derpface:/var/log$ sudo cat nano auth.log | grep watcher  (en laita tähän koko grepattua lokia)  
+        `Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt`  
+        Kuten nähdään, käyttäjä watcher yritti sudo oikeuksia käyttäen luoda test.txt tiedoston käyttäjän pajazzo kotihakemistoon. Toiminta estettiin puuttuvien oikeuksien takia ja asia raportoitiin lokiin.  
+
+
+
+  
+
 
 
  
