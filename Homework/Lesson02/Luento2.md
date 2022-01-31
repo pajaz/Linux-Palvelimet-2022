@@ -97,21 +97,21 @@
               
             Kuten nähdään oikeudet on nyt poistettu sekä kotikansiosta, että sen alikansioilta. Tein samat komennot käyttäjälle pajazzo, koska en jaksa alkaa leikkimään enempää tuolla uudella tunnuksella. Eli poistin others ryhmältä rekursiivisesti kaikki oikeudet käyttäjän pajazzo home -kansioon.  
             Nyt ongelmana on, että uusia tiedostoja luodessani on others -ryhmällä ja pajazzon käyttäjäryhmällä kuitenkin lukuoikeus näihin tiedostoihin:  
-            pajazzo@derpface:~$ pwd  
+            pajazzo@derpface:\~$ pwd  
             /home/pajazzo  
-            pajazzo@derpface:~$ touch test.txt   
-            pajazzo@derpface:~$ ls -l | grep test  
+            pajazzo@derpface:\~$ touch test.txt   
+            pajazzo@derpface:\~$ ls -l | grep test  
             -rw-r--r-- 1 pajazzo pajazzo 0 Jan 31 15:21 test.txt  
 
             Käytetään [umask komentoa](https://geek-university.com/linux/set-the-default-permissions-for-newly-created-files/) määrittämään uusien tiedostojen luvat.  
               
-            pajazzo@derpface:~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
+            pajazzo@derpface:\~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
             0022 (samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others -ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritusoikeus (x = execute) on oletuksena poissa tiedostoilta)  
-            pajazzo@derpface:~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
-            pajazzo@derpface:~$ umask  
+            pajazzo@derpface:\~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
+            pajazzo@derpface:\~$ umask  
             0077  
-            pajazzo@derpface:~$ touch test1.txt && mkdir test1  
-            pajazzo@derpface:~$ ls -l | grep test  
+            pajazzo@derpface:\~$ touch test1.txt && mkdir test1  
+            pajazzo@derpface:\~$ ls -l | grep test  
             drwx------ 2 pajazzo pajazzo     4096 Jan 31 15:37 test1  
             -rw------- 1 pajazzo pajazzo        0 Jan 31 15:37 test1.txt  
 
