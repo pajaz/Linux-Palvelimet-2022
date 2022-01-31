@@ -97,21 +97,21 @@
               
             Kuten nähdään oikeudet on nyt poistettu sekä kotikansiosta, että sen alikansioilta. Tein samat komennot käyttäjälle pajazzo, koska en jaksa alkaa leikkimään enempää tuolla uudella tunnuksella. Eli poistin others ryhmältä rekursiivisesti kaikki oikeudet käyttäjän pajazzo home -kansioon.  
             Nyt ongelmana on, että uusia tiedostoja luodessani on others -ryhmällä ja pajazzon käyttäjäryhmällä kuitenkin lukuoikeus näihin tiedostoihin:  
-            pajazzo@derpface:~$ pwd  
+            pajazzo@derpface:\~$ pwd  
             /home/pajazzo  
-            pajazzo@derpface:~$ touch test.txt   
-            pajazzo@derpface:~$ ls -l | grep test  
+            pajazzo@derpface:\~$ touch test.txt   
+            pajazzo@derpface:\~$ ls -l | grep test  
             -rw-r--r-- 1 pajazzo pajazzo 0 Jan 31 15:21 test.txt  
 
             Käytetään [umask komentoa](https://geek-university.com/linux/set-the-default-permissions-for-newly-created-files/) määrittämään uusien tiedostojen luvat.  
               
-            pajazzo@derpface:~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
+            pajazzo@derpface:\~$ umask (tarkistetaan mitkä umask oikeudet ovat tällä hetkellä)
             0022 (samat oikeudet kuin root käyttäjällä. Kaksi kakkosta perässä tarkoittavat, että käyttäjän ryhmällä sekä others -ryhmällä ei ole kirjoitusoikeutta (x = 1, w = 2, r = 4) uusiin tiedostoihin. Suoritusoikeus (x = execute) on oletuksena poissa tiedostoilta)  
-            pajazzo@derpface:~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
-            pajazzo@derpface:~$ umask  
+            pajazzo@derpface:\~$ nano .bashrc  > Lisätään tiedoston loppuun rivi umask 077 (4+2+1= 7 eli poistetaan kaikki oikeudet sekä ryhmältä, että käyttäjiltä uusiin tiedostoihin ja kansioihin, tallennetaan ja avataan uusi terminaali)  
+            pajazzo@derpface:\~$ umask  
             0077  
-            pajazzo@derpface:~$ touch test1.txt && mkdir test1  
-            pajazzo@derpface:~$ ls -l | grep test  
+            pajazzo@derpface:\~$ touch test1.txt && mkdir test1  
+            pajazzo@derpface:\~$ ls -l | grep test  
             drwx------ 2 pajazzo pajazzo     4096 Jan 31 15:37 test1  
             -rw------- 1 pajazzo pajazzo        0 Jan 31 15:37 test1.txt  
 
@@ -123,7 +123,7 @@
 3. /home/pajazzo/  
     * Käyttäjän oma kansio johon käyttäjä voi tallentaa dataa pysyvästi kuten käyttäjän itse luomat tiedostot, sovellusten käyttäjäkohtaiset tiedostot tai vaikka scriptejä jotka ajetaan käyttäjän määrittämänä ajankohtana (esim. sisäänkirjautuessa)  
     * Esimerkki hyödyllisestä/tärkeästä tiedostosta:  
-        + pajazzo@derpface:~$ ls -la | grep bash  
+        + pajazzo@derpface:\~$ ls -la | grep bash  
         -rw-------  1 pajazzo pajazzo 24598 Jan 31 16:06 .bash_history  
         -rw-r-----  1 pajazzo pajazzo   220 Jan 20 12:44 .bash_logout  
         **-rw-r-----  1 pajazzo pajazzo  3537 Jan 31 15:34 .bashrc**  
@@ -134,7 +134,7 @@
     * Koska en käyttänyt non-free ratkaisua oman Debian asennukseni tekemiseksi jouduin käydä muokkaamassa seuraavaa tiedostoa, jotta saan joitain proprietary ajureita asennuttua:   
     pajazzo@derpface:/$ cd etc/apt/  
     pajazzo@derpface:/etc/apt$ ls  
-    apt.conf.d  auth.conf.d  listchanges.conf  listchanges.conf.d  preferences.d  sources.list  sources.list~  sources.list.d  trusted.gpg  trusted.gpg~  trusted.gpg.d  
+    apt.conf.d  auth.conf.d  listchanges.conf  listchanges.conf.d  preferences.d  sources.list  sources.list\~  sources.list.d  trusted.gpg  trusted.gpg~  trusted.gpg.d  
     pajazzo@derpface:/etc/apt$ cat sources.list |grep non-free  
     deb http://deb.debian.org/debian/ bullseye main contrib non-free  
 
@@ -262,9 +262,9 @@ Itse käytän grep komentoa aika paljon, lähinnä siistiäkseni jonkin toisen k
 
 Laitan toiseksi esimerkiksi kuinka grepillä voi jättää tuloksista pois ehtoon asetetun rivin:  
 Minulla on tiedosto text.txt kotihakemistossani. Tiedosto on täynnä numero rivejä, mutta seassa on joitain rivejä joissa on sanoja. Grepin avulla voidaan jättää tulostuksesta pois rivit jotka sisältävät numeroita.  
-pajazzo@derpface:~$ grep -c "" text.txt  
+pajazzo@derpface:\~$ grep -c "" text.txt  
 69 (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
-pajazzo@derpface:~$ grep -v "\[0-9\]" text.txt    
+pajazzo@derpface:\~$ grep -v "\[0-9\]" text.txt    
 Tämä  
 On  
 Tiedosto  
@@ -277,7 +277,7 @@ Luettavissa.
   
 (-v:llä käännetään ehto toisinpäin ja \[0-9\] pitää sisällään kaikki numerot)  
   
-pajazzo@derpface:~$ grep -v "\[0-9\]" text.txt | grep -iv vaikeasti   
+pajazzo@derpface:\~$ grep -v "\[0-9\]" text.txt | grep -iv vaikeasti   
 Tämä  
 On  
 Tiedosto  
