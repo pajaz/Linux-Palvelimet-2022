@@ -121,7 +121,36 @@
 
 
 3. /home/pajazzo/  
-    * Käyttäjän oma kansio johon käyttäjä voi tallentaa dataa pysyvästi.  
+    * Käyttäjän oma kansio johon käyttäjä voi tallentaa dataa pysyvästi kuten käyttäjän itse luomat tiedostot, sovellusten käyttäjäkohtaiset tiedostot tai vaikka scriptejä jotka ajetaan käyttäjän määrittämänä ajankohtana (esim. sisäänkirjautuessa)  
+    * Esimerkki hyödyllisestä/tärkeästä tiedostosta:  
+        + pajazzo@derpface:~$ ls -la | grep bash  
+        -rw-------  1 pajazzo pajazzo 24598 Jan 31 16:06 .bash_history  
+        -rw-r-----  1 pajazzo pajazzo   220 Jan 20 12:44 .bash_logout  
+        **-rw-r-----  1 pajazzo pajazzo  3537 Jan 31 15:34 .bashrc**  
+        + .bashrc tiedoston sisältö suoritetaan joka kerta, kun uusi terminaali-istunto avataan (kuten edellisessä tehtävässä huomattiin, muokattuani tiedostoa käynnistin uuden terminaali-istunnon)  
+
+4. /etc/  
+    * Kaikkea kivaa eli järjestelmän konfiguraatiot. 
+    * Koska en käyttänyt non-free p ratkaisua oman Debian asennukseni tekemiseksi jouduin käydä muokkaamassa seuraavaa tiedostoa, jotta saan joitain proprietary ajureita asennuttua:   
+    pajazzo@derpface:/$ cd etc/apt/  
+    pajazzo@derpface:/etc/apt$ ls  
+    apt.conf.d  auth.conf.d  listchanges.conf  listchanges.conf.d  preferences.d  sources.list  sources.list~  sources.list.d  trusted.gpg  trusted.gpg~  trusted.gpg.d  
+    pajazzo@derpface:/etc/apt$ cat sources.list |grep non-free  
+    deb http://deb.debian.org/debian/ bullseye main contrib non-free  
+
+    Ainakin NVidian ajureiden kanssa piti useampaan aptin lähteeseen lisätä vaihtoehdot contrib ja non-free jotta tarvittavat ajurit saadaan asennettua. En toki ole saanut kunnolla hommaa vielä pelaamaan (esim. ulkoiset näytöt eivät tällä hetkellä toimi). Koska tietokoneeni näytöohjainarkkitehtuuri on mallia [NVidia Optimus](https://wiki.debian.org/NVIDIA%20Optimus) ja sen kanssa säätäminen Linux puolella on aiemmin ollut tuskallista katselen tätä joskus paremmalla ajalla.  
+
+5. /media/  
+    * Ulkoiset mediat kuten jaetut kovalevyt, usb-tikut jne.
+    * Itselläni tuolta löytyy yksi ositus HDD levystä, jota käytän jakona Windowsin ja Linuxin välillä. Pitää laittaa se [auto-mounttaavaksi](https://help.ubuntu.com/community/Fstab) jossain välissä.  
+    pajazzo@derpface:/$ sudo mount -o rw /dev/sda3 /media/pajazzo/Shared  
+    pajazzo@derpface:/$ cd media/pajazzo/  
+    pajazzo@derpface:/media/pajazzo$ ls -l  
+    drwxrwxrwx 1 root root 8192 Jan 24 21:06 Shared  
+
+
+ 
+
                 
 
 
