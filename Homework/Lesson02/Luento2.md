@@ -251,7 +251,7 @@ pajazzo@derpface:/$ cd var/log
 pajazzo@derpface:/var/log$ sudo ls | grep auth  
 auth.log  
 auth.log.1  
-pajazzo@derpface:/var/log$ sudo cat auth.log | grep watcher  (en laita tähän koko grepattua lokia vaan vain tuon kiinnostavan rivin)  
+pajazzo@derpface:/var/log$ sudo cat auth.log | grep watcher  _(en laita tähän koko grepattua lokia vaan vain tuon kiinnostavan rivin)_  
 Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt  
 
 Kuten nähdään, käyttäjä watcher yritti ilmoitettuna ajankohtana derpface hostilla, sudo oikeuksia käyttäen luoda test.txt tiedoston touch sovellusta käyttäen (touchin tiedostosijainti /usr/bin/touch) käyttäjän pajazzo kotihakemiston juureen käyttäen terminaali istuntoa pts/2 (tämän voi aukiolevassa terminaalissa tarkistaa tty komennolla). Toiminta estettiin puuttuvien oikeuksien takia (user NOT in sudoers) ja asia raportoitiin lokiin. USER kohtaa en oikein osaa analysoida, mutta veikkaan, että tuo on lokitiedon lisännyt käyttäjä, tässä tapauksessa root.  
@@ -262,9 +262,9 @@ Itse käytän grep komentoa aika paljon, lähinnä siistiäkseni jonkin toisen k
 
 Laitan toiseksi esimerkiksi kuinka grepillä voi jättää tuloksista pois ehtoon asetetun rivin:  
 Minulla on tiedosto text.txt kotihakemistossani. Tiedosto on täynnä numero rivejä, mutta seassa on joitain rivejä joissa on sanoja. Grepin avulla voidaan jättää tulostuksesta pois rivit jotka sisältävät numeroita.  
-`pajazzo@derpface:~$ grep -c "" text.txt`  
-69` (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
-`pajazzo@derpface:~$ grep -v "[0-9]" text.txt`  
+pajazzo@derpface:~$ grep -c "" text.txt  
+69 (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
+pajazzo@derpface:~$ grep -v "\[0-9\]" text.txt    
 Tämä  
 On  
 Tiedosto  
@@ -277,7 +277,7 @@ Luettavissa.
   
 (-v:llä käännetään ehto toisinpäin ja \[0-9\] pitää sisällään kaikki numerot)  
   
-`pajazzo@derpface:~$ grep -v "[0-9]" text.txt | grep -iv vaikeasti`   
+pajazzo@derpface:~$ grep -v "\[0-9\]" text.txt | grep -iv vaikeasti   
 Tämä  
 On  
 Tiedosto  
