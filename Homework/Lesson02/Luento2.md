@@ -11,7 +11,7 @@
 
 1. / eli root  
     * Koko Linuxin tiedostojärjestelmän ylin hakemisto eli juuri ja pitää siis sisällään kaikki muut tärkeät ja vähemmän tärkeät kansiot.  
-    <span style="color:#d3d3d3">
+    <span style="background-color:grey">
     pajazzo@derpface:/$ cd /  
     pajazzo@derpface:/$ pwd  
     /  
