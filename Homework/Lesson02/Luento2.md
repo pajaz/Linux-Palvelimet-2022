@@ -1,5 +1,8 @@
 # Luento 2 Kotitehtävät
-
+  
+Osa kurssia Linux Palvelimet ICT4TN021-3018 Haaga-Helia Ammattikorkeakoulussa  
+Kurssin vetäjä: [Tero Karvinen](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/)  
+  
 ## CLI
 
 ## z) Lue ja tiivistä. Tiivistelmäksi riittää muutama ranskalainen viiva per artikkeli. (Tässä z-alakohdassa ei tarvitse tehdä testejä tietokoneella)
@@ -58,7 +61,7 @@
         drwxr-xr-x 27 pajazzo pajazzo  4096 Jan 31 13:29 pajazzo  
         drwxr-xr-x 15 watcher watcher  4096 Jan 31 13:40 watcher  
             
-        - [Rivien selitykset](https://medium.com/@scottdebian/the-ls-command-in-linux-and-all-its-options-17ba8784a709):  
+        - Rivien selitykset [tästä](https://medium.com/@scottdebian/the-ls-command-in-linux-and-all-its-options-17ba8784a709):  
             1. Ensimmäinen kolumni ilmoittaa kansioiden ja tiedostojen käyttöoikeudet ja sen ensimmäinen merkki ilmoittaa tiedostotyypin.  
                 * d = directory eli kansio. Home kansiossa ei ole muun tyyppisiä.  
                 * Ensimmäiset kolme merkkiä tyypin jälkeen ovat tiedoston omistajan oikeudet (tässä tapauksessa read, write ja execute eli täydet oikeudet).  
