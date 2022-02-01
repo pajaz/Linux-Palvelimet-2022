@@ -255,13 +255,13 @@ found in the Taskwarrior source kit.
 Documentation for Taskwarrior can be found using 'man task', 'man taskrc', 'man  
 task-color', 'man task-sync' or at http://taskwarrior.org  
   
-pajazzo@derpface:~$ task add "Return Linux homework" due:2022-02-01T15:00  
+pajazzo@derpface:\~$ task add "Return Linux homework" due:2022-02-01T15:00  
 Created task 1.  
-pajazzo@derpface:~$ task add "Go to work" due:2022-02-02T08:00  
+pajazzo@derpface:\~$ task add "Go to work" due:2022-02-02T08:00  
 Created task 2.  
-pajazzo@derpface:~$ task add "Buy milk"  
+pajazzo@derpface:\~$ task add "Buy milk"  
 Created task 3.  
-pajazzo@derpface:~$ task list  
+pajazzo@derpface:\~$ task list  
   
 ID Age   Due        Description               Urg   
  1 36s   2022-02-01 Return Linux homework     8.77  
@@ -269,7 +269,7 @@ ID Age   Due        Description               Urg
  3  2s              Buy milk                     0  
   
 3 tasks  
-pajazzo@derpface:~$ task 3  
+pajazzo@derpface:\~$ task 3  
 No command specified - assuming 'information'.  
   
 Name          Value                                 
