@@ -7,7 +7,7 @@
 * Karvinen 2020: [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/)  
 * YCombinator Hacker News, [vapaavalintainen artikkeli kommentteineen Linuxin komentokehotteesta](https://hn.algolia.com/?dateEnd=1643270199&dateRange=custom&dateStart=1547942400&page=0&prefix=false&query=command%20line&sort=byPopularity&type=story) (Kommentit aukeavat siitä pienestä "420 comments" linkistä Riittää, kun silmäilet artikkelin ja kommentit soveltuvin osin, osa voi olla kirjan mittaisia etkä ehdi tässä lukea niitä kokonaan. Samoin tiivistelmäksi riittää muutama bulletti, ei tarvitse kattaa koko sisältöä)  
   
-## a) FHS. Esittele kansiot, jotka on listattu "Command Line Basics Revisited" kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
+## a) FHS. Esittele kansiot, jotka on listattu [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/) kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
 
 1. / eli root  
     * Koko Linuxin tiedostojärjestelmän ylin hakemisto eli juuri ja pitää siis sisällään kaikki muut tärkeät ja vähemmän tärkeät kansiot.
@@ -26,14 +26,14 @@
     test.txt *(Tiedosto luotu onnistuneesti)*  
 
 2. /home/  
-    * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaiset kansiot/tiedostot sekä lost+found hakemiston, johon järjestelmä yrittää pelastaa korruptoituneita tai mahdollisesti korruptoituneita tiedostoja esim. kun tietokoneen virta katkeaa yllättäen kesken suorituksen.  
+    * Pitää sisällään käyttäjien kotihakemistot, eli jokaisen käyttäjän henkilökohtaiset kansiot/tiedostot sekä [lost+found](https://www.howtogeek.com/282374/what-is-the-lostfound-folder-on-linux-and-macos/) hakemiston, johon järjestelmä yrittää pelastaa korruptoituneita tai mahdollisesti korruptoituneita tiedostoja esim. kun tietokoneen virta katkeaa yllättäen kesken suorituksen.  
     pajazzo@derpface:/home$ cd /home/  
     pajazzo@derpface:/home$ pwd  
     /home  
     pajazzo@derpface:/home$ ls  
     lost+found  pajazzo  
     pajazzo@derpface:/home$   
-    * Oletuksena uusilla luoduilla käyttäjäprofiileilla on oikeus katsella toisen käyttäjän home kansion tiedostoja, mutta ei kirjoitusoikeuksia.  
+    * Oletuksena uusilla luoduilla käyttäjäprofiileilla on oikeus katsella toisen käyttäjän home kansion tiedostoja, mutta ei kirjoitusoikeuksia (demonstraatio edellä).  
         - Luodaan uusi käyttäjä koneelle:  
         pajazzo@derpface:/$ sudo adduser watcher  
         Adding user \`watcher' ...  
@@ -58,7 +58,7 @@
         drwxr-xr-x 27 pajazzo pajazzo  4096 Jan 31 13:29 pajazzo  
         drwxr-xr-x 15 watcher watcher  4096 Jan 31 13:40 watcher  
             
-        - Rivien selitykset:
+        - [Rivien selitykset](https://medium.com/@scottdebian/the-ls-command-in-linux-and-all-its-options-17ba8784a709):  
             1. Ensimmäinen kolumni ilmoittaa kansioiden ja tiedostojen käyttöoikeudet ja sen ensimmäinen merkki ilmoittaa tiedostotyypin.  
                 * d = directory eli kansio. Home kansiossa ei ole muun tyyppisiä.  
                 * Ensimmäiset kolme merkkiä tyypin jälkeen ovat tiedoston omistajan oikeudet (tässä tapauksessa read, write ja execute eli täydet oikeudet).  
@@ -71,7 +71,7 @@
             6. Edellinen muokkauspäivä  
         - Voin siis mennä katselemaan käyttäjänä pajazzo käyttäjän watcher tiedostoja ja jopa suorittaa niitä, mutta en muokata.   
             - Otetaan nuo oikeudet pois:  
-            pajazzo@derpface:/home$ sudo chmod -R o-rx watcher/  *(chmodin -R rekursiivisesti kaikille sijainnin tiedostoille, -o oikeuksia others ryhmälle ja -rx poistetaan read ja execute oikeudet)*  
+            pajazzo@derpface:/home$ sudo chmod -R o-rx watcher/  *(chmodin -R rekursiivisesti kaikille sijainnin tiedostoille, -o oikeuksia others ryhmälle ja -rx poistetaan read ja execute oikeudet, lähteenä man chmod ja oma muisti chmodin käytöstä)*  
             pajazzo@derpface:/home$ ls  
             lost+found  pajazzo  watcher  
             pajazzo@derpface:/home$ ls -l  
@@ -127,7 +127,7 @@
         -rw-------  1 pajazzo pajazzo 24598 Jan 31 16:06 .bash_history  
         -rw-r-----  1 pajazzo pajazzo   220 Jan 20 12:44 .bash_logout  
         **-rw-r-----  1 pajazzo pajazzo  3537 Jan 31 15:34 .bashrc**  
-        + .bashrc tiedoston sisältö suoritetaan joka kerta, kun uusi terminaali-istunto avataan (kuten edellisessä tehtävässä huomattiin, kun muokattuani tiedostoa, käynnistin uuden terminaali-istunnon)  
+        + [.bashrc](https://cloudzy.com/knowledge-base/what-is-linux-bashrc-and-how-to-use-it-full-guide/) tiedoston sisältö suoritetaan joka kerta, kun uusi terminaali-istunto avataan (kuten edellisessä tehtävässä huomattiin, kun muokattuani tiedostoa, käynnistin uuden terminaali-istunnon)  
 
 4. /etc/  
     * Kaikkea kivaa eli järjestelmän konfiguraatiot.  
@@ -135,7 +135,7 @@
     pajazzo@derpface:/$ cd etc/apt/  
     pajazzo@derpface:/etc/apt$ ls  
     apt.conf.d  auth.conf.d  listchanges.conf  listchanges.conf.d  preferences.d  sources.list  sources.list\~  sources.list.d  trusted.gpg  trusted.gpg~  trusted.gpg.d  
-    pajazzo@derpface:/etc/apt$ cat sources.list |grep non-free  
+    pajazzo@derpface:/etc/apt$ cat sources.list |grep non-free  (en laita koko grep palautetta tähän, vain esimerkkirivin)  
     deb http://deb.debian.org/debian/ bullseye main contrib non-free  
 
     Ainakin NVidian ajureiden kanssa piti useampaan aptin lähteeseen lisätä vaihtoehdot contrib ja non-free jotta tarvittavat ajurit saadaan asennettua. En toki ole saanut kunnolla hommaa vielä pelaamaan (esim. ulkoiset näytöt eivät tällä hetkellä toimi). Koska tietokoneeni näytöohjainarkkitehtuuri on mallia [NVidia Optimus](https://wiki.debian.org/NVIDIA%20Optimus) ja sen kanssa säätäminen Linux puolella on aiemmin ollut tuskallista katselen tätä joskus paremmalla ajalla.  
@@ -194,11 +194,11 @@ git on komentorivillä toimiva sovellustyökalu, joka tulee asennettua aina uute
   
 `pajazzo@derpface:~$ sudo apt-get install git`  
 `pajazzo@derpface:~$ git config --global user.name pajaz`  
-`pajazzo@derpface:~$ git config --global user.email --- redacted ---`  
+`pajazzo@derpface:~$ git config --global user.email omaemail@domain.fi/com/org`  
   
 Siinä perus Git setuppi, mutta jatketaan vielä ja laitetaan SSH yhteys kuntoon. Tätä varten pitää luoda salausavainpari ja esimerkiksi [täältä](https://linuxkamarada.com/en/2019/07/14/using-git-with-ssh-keys/#.YfgvkvexVJc) löytyy erittäin hyvin selitetty ohje avainparin luomiseksi ja koko SSH yhteyden muodostamiseksi githubiin.  
   
-`pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "--- redacted ---"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi -C oma sähköpostiosoite)     
+`pajazzo@derpface:~$ ssh-keygen -t rsa -b 4096 -C "omaemail@domain.fi/com/org"` (Tässä luodaan rsa salausta käyttävä 4096 bittinen salausavain, jonka perään laitetaan kommentiksi -C oma sähköpostiosoite)     
 `Generating public/private rsa key pair.`  
 `Enter file in which to save the key (/home/pajazzo/.ssh/id_rsa): `    
 `Created directory '/home/pajazzo/.ssh'.`  
@@ -235,14 +235,61 @@ Toimii. Seuraavaksi kloonaan repositorion githubista koneelleni, päivitän näm
 
 Ei virheitä ja Githubin puolellakin muutamia kirjoitusvirheitä lukuunottamatta kaikki näyttää hyvältä.   
 
-#### 
+#### Muistiinpanojen hallinta komentokehotteen kautta
+[taskwarrior](https://taskwarrior.org/)  
+Basic commands can be found [here](https://taskwarrior.org/docs/commands/)  
 
+Asennus:  
+pajazzo@derpface:~$ sudo apt-get install taskwarrior  
+  
+Käyttö:  
+pajazzo@derpface:~$ task version  
+A configuration file could not be found in   
+Would you like a sample /home/pajazzo/.taskrc created, so Taskwarrior can proceed? (yes/no) Yes  
+task 2.5.3 built for Linux  
+Copyright (C) 2006 - 2021 P. Beckingham, F. Hernandez.  
 
-
-
+Taskwarrior may be copied only under the terms of the MIT license, which may be  
+found in the Taskwarrior source kit.  
+  
+Documentation for Taskwarrior can be found using 'man task', 'man taskrc', 'man  
+task-color', 'man task-sync' or at http://taskwarrior.org  
+  
+pajazzo@derpface:~$ task add "Return Linux homework" due:2022-02-01T15:00  
+Created task 1.  
+pajazzo@derpface:~$ task add "Go to work" due:2022-02-02T08:00  
+Created task 2.  
+pajazzo@derpface:~$ task add "Buy milk"  
+Created task 3.  
+pajazzo@derpface:~$ task list  
+  
+ID Age   Due        Description               Urg   
+ 1 36s   2022-02-01 Return Linux homework     8.77  
+ 2 12s   2022-02-02 Go to work                8.45  
+ 3  2s              Buy milk                     0  
+  
+3 tasks  
+pajazzo@derpface:~$ task 3  
+No command specified - assuming 'information'.  
+  
+Name          Value                                 
+ID            3                                     
+Description   Buy milk  
+Status        Pending                               
+Entered       2022-02-01 13:26:49 (17s)  
+Last modified 2022-02-01 13:26:49 (17s)             
+Virtual tags  LATEST PENDING READY UNBLOCKED  
+UUID          1bf1e273-42fa-4764-b1f7-60d3e2ff9f2d  
+Urgency          0  
+  
+pajazzo@derpface:~$ task done 3  
+Completed task 3 'Buy milk'.  
+Completed 1 task.  
+You have more urgent tasks.  
+  
 ## c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
-Esimerkki epäonnistuneesta tapahtumasta ja lokirivin analyysi tulikin jo tehtyä tämä dokumentin /var/log/ esittelykohdassa:
+Esimerkki epäonnistuneesta tapahtumasta ja lokirivin analyysi tulikin jo tehtyä tämä dokumentin /var/log/ esittelykohdassa.  
 Käytetty komento oli seuraava:  
 watcher@derpface:/$ sudo touch pajazzo/test.txt  
 
@@ -254,8 +301,11 @@ auth.log.1
 pajazzo@derpface:/var/log$ sudo cat auth.log | grep watcher  _(en laita tähän koko grepattua lokia vaan vain tuon kiinnostavan rivin)_  
 Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=/home/pajazzo ; USER=root ; COMMAND=/usr/bin/touch test.txt  
 
-Kuten nähdään, käyttäjä watcher yritti ilmoitettuna ajankohtana derpface hostilla, sudo oikeuksia käyttäen luoda test.txt tiedoston touch sovellusta käyttäen (touchin tiedostosijainti /usr/bin/touch) käyttäjän pajazzo kotihakemiston juureen käyttäen terminaali istuntoa pts/2 (tämän voi aukiolevassa terminaalissa tarkistaa tty komennolla). Toiminta estettiin puuttuvien oikeuksien takia (user NOT in sudoers) ja asia raportoitiin lokiin. USER kohtaa en oikein osaa analysoida, mutta veikkaan, että tuo on lokitiedon lisännyt käyttäjä, tässä tapauksessa root.  
+Kuten nähdään, käyttäjä watcher yritti ilmoitettuna ajankohtana derpface hostilla, sudo oikeuksia käyttäen luoda test.txt tiedoston touch sovellusta käyttäen (touch -sovelluksen tiedostosijainti /usr/bin/touch) käyttäjän pajazzo kotihakemiston juureen käyttäen terminaali istuntoa pts/2 (tämän voi aukiolevassa terminaalissa tarkistaa tty komennolla). Toiminta estettiin puuttuvien oikeuksien takia (user NOT in sudoers eli käyttäjältä puuttu superuser oikeudet) ja asia raportoitiin lokiin. USER kohtaa en oikein osaa analysoida, mutta veikkaan, että tuo on lokitiedon lisännyt käyttäjä, tässä tapauksessa root.  
   
+  
+Onnistunut tapahtuma...
+
 ## d) The Friendly M. Näytä 2-3 kuvaavaa esimerkkiä grep-komennon käytöstä. Ohjeita löytyy 'man grep' ja tietysti verkosta.
 
 Itse käytän grep komentoa aika paljon, lähinnä siistiäkseni jonkin toisen komennon tulosteesta näkyville vain itseäni kiinnostavat rivit.  Esimerkki vaikkapa tämän dokumentin [Acct asennus kohdasta](https://github.com/pajaz/Linux-Palvelimet-2022/blob/main/Homework/Lesson02/Luento2.md#mahdollisuus-monitoroida-ty%C3%B6ymp%C3%A4rist%C3%B6n-k%C3%A4ytt%C3%A4jien-toimintaa-vaivattomasti-esimerkiksi-selvitt%C3%A4%C3%A4-kuka-meni-poistamaan-jonkin-t%C3%A4rke%C3%A4-tiedoston) jossa olen pipelinannut lastcomm:in palautteen näyttämään vain tiettyä komentoa koskevat tiedot.  
@@ -263,7 +313,7 @@ Itse käytän grep komentoa aika paljon, lähinnä siistiäkseni jonkin toisen k
 Laitan toiseksi esimerkiksi kuinka grepillä voi jättää tuloksista pois ehtoon asetetun rivin:  
 Minulla on tiedosto text.txt kotihakemistossani. Tiedosto on täynnä numero rivejä, mutta seassa on joitain rivejä joissa on sanoja. Grepin avulla voidaan jättää tulostuksesta pois rivit jotka sisältävät numeroita.  
 pajazzo@derpface:\~$ grep -c "" text.txt  
-69 (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
+697 (Tiedosto sisältää 697 riviä. -c ilmoittaa rivimäärän joka täsmää ehtoon)  
 pajazzo@derpface:\~$ grep -v "\[0-9\]" text.txt    
 Tämä  
 On  
@@ -287,10 +337,19 @@ Sanoma
 On  
 Luettavissa.  
   
-(|-operaattorin avulla annetaan ensimmäisen grepin tuloste toisen grepin käsiteltäväksi ja -i kertoo komennolla, ettei sen tarvitse välittää isoista ja pienistä kirjaimista)  
+(|-operaattorin avulla annetaan ensimmäisen grepin tuloste toisen grepin käsiteltäväksi ja -i kertoo komennolle, ettei sen tarvitse välittää isoista ja pienistä kirjaimista)  
   
 
 ## e) Pwnkit. Päivitä kaikki Linux-ohjelmat ja asenna tietoturvapäivitykset.
+  
+Suoritettu komennot:  
+sudo apt-get update  
+sudo apt-get upgrade 
+sudo apt-get -y dist-upgrade  
+
+Upgraded palauttivat, koska taisin tehdä tuon jo viime viikolla:  
+`0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.`  
+
 
 ## y) cdlspwd! Opettele tärkeimmät komennot ulkoa ja harjoittele suurella määrällä kokeiluja. Opeteltavat komennot ovat artikkelissa Karvinen 2020: Command Line Basics Revisited (tätä y-alakohtaa ei tarvitse raportoida lainkaan)
 
