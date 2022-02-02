@@ -367,10 +367,10 @@ mkdir \[0...9\]
 touch {0..9}/teksti.txt  
 lisäsin sattumanvaraisesti tiedostoihin joko numeroita tai nimen Mikko tai mikko nanoa käyttäen ja vielä muutaman tiedoston manuaalisesti.  
 
-pajazzo@derpface:~/Projects$ cd test/  
-pajazzo@derpface:~/Projects/test$ pwd  
+pajazzo@derpface:\~/Projects$ cd test/  
+pajazzo@derpface:\~/Projects/test$ pwd  
 /home/pajazzo/Projects/test  
-pajazzo@derpface:~/Projects/test$ ls *  
+pajazzo@derpface:\~/Projects/test$ ls *  
 teksti2.txt  teksti.txt  
 0:  
 teksti.txt  
