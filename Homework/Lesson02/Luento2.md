@@ -9,6 +9,8 @@ Kurssin vetäjä: [Tero Karvinen](https://terokarvinen.com/2021/linux-palvelimet
   
 * Karvinen 2020: [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/)  
 * YCombinator Hacker News, [vapaavalintainen artikkeli kommentteineen Linuxin komentokehotteesta](https://hn.algolia.com/?dateEnd=1643270199&dateRange=custom&dateStart=1547942400&page=0&prefix=false&query=command%20line&sort=byPopularity&type=story) (Kommentit aukeavat siitä pienestä "420 comments" linkistä Riittää, kun silmäilet artikkelin ja kommentit soveltuvin osin, osa voi olla kirjan mittaisia etkä ehdi tässä lukea niitä kokonaan. Samoin tiivistelmäksi riittää muutama bulletti, ei tarvitse kattaa koko sisältöä)  
+
+* Jotenkin unohtui kokonaan tämä osio tehtävästä, kun keskityin muihin. Kirjoittelen huomenna 3.2.2022 vastauksen tähän.  
   
 ## a) FHS. Esittele kansiot, jotka on listattu [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/) kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
 
@@ -357,5 +359,75 @@ Upgraded palauttivat, koska taisin tehdä tuon jo viime viikolla:
 ## y) cdlspwd! Opettele tärkeimmät komennot ulkoa ja harjoittele suurella määrällä kokeiluja. Opeteltavat komennot ovat artikkelissa Karvinen 2020: Command Line Basics Revisited (tätä y-alakohtaa ei tarvitse raportoida lainkaan)
 
 ## Bonus: Recursive. Pystytkö etsimään kaikki rivit, joilla lukee Tero isolla tai pienellä, kun tiedostoja on sisäkkäisissä kansioissa? (Eli tutkimaan jonkin kansion kaikkine alihakemistoineen)
+
+**Tämä tehty 2.2.2022 illalla**
+
+Loin tällaisen testikansio kokonaisuuden komennoilla:  
+mkdir \[0...9\]
+touch {0..9}/teksti.txt  
+lisäsin sattumanvaraisesti tiedostoihin joko numeroita tai nimen Mikko tai mikko nanoa käyttäen ja vielä muutaman tiedoston manuaalisesti.  
+
+pajazzo@derpface:~/Projects$ cd test/  
+pajazzo@derpface:~/Projects/test$ pwd  
+/home/pajazzo/Projects/test  
+pajazzo@derpface:~/Projects/test$ ls *  
+teksti2.txt  teksti.txt  
+0:  
+teksti.txt  
+  
+1:  
+teksti.txt  
+  
+2:  
+teksti.txt  
+  
+3:  
+teksti.txt  
+  
+4:  
+teksti.txt  
+  
+5:  
+teksti.txt  
+  
+6:  
+teksti.txt  
+  
+7:  
+teksti.txt  
+  
+8:  
+teksti.txt  
+  
+9:  
+teksti.txt  
+  
+* Listasin kaikki tiedostot testi ja sen alikansioissa.  
+
+pajazzo@derpface:~/Projects/test$ find -type f -exec  cat {} \;  
+Mikko  
+Mikko  
+Mikko   
+mikko  
+mikko  
+Mikko  
+32412421421    
+124124214   
+Mikko124124214  
+  
+* find eli etsi, kaikki tiedostot tyyppiä f eli file ja aja kaikille tuloksille komento cat parametrilla {}. {} kohdalle sijoitetaan findin tulos. exec vaatii vielä loppuun argumentin \; [toimiakseen](https://www.baeldung.com/linux/find-exec-command).  
+
+pajazzo@derpface:~/Projects/test$ find -type f -exec cat {} \; | grep -i mikko  
+Mikko  
+Mikko  
+Mikko  
+mikko  
+mikko  
+Mikko  
+Mikko124124214  
+
+* Koska aiempi tulos piti sisällään kaikkien tiedostojen sisällön, pipelinetin tuloksen vielä grepille -i optiolla, joka jättää isot ja pienet kirjaimet huomiotta.  
+
+
 
 ##   g) Sshecrets. Vaikeampi vapaaehtoinen bonuskohta, ei ole opetettu vielä: Asenna SSH-demoni. Kokeile omalla ssh-palvelimellasi jotain seuraavista: ssh-copy-id, sshfs, scp tai git. (Helpoin lienee scp: ‘scp foo.txt tero@example.com:’)
