@@ -309,8 +309,8 @@ Jan 31 15:37:41 derpface sudo:  watcher : user NOT in sudoers ; TTY=pts/2 ; PWD=
 Kuten nähdään, käyttäjä watcher yritti ilmoitettuna ajankohtana derpface hostilla, sudo oikeuksia käyttäen luoda test.txt tiedoston touch sovellusta käyttäen (touch -sovelluksen tiedostosijainti /usr/bin/touch) käyttäjän pajazzo kotihakemiston juureen käyttäen terminaali istuntoa pts/2 (tämän voi aukiolevassa terminaalissa tarkistaa tty komennolla). Toiminta estettiin puuttuvien oikeuksien takia (user NOT in sudoers eli käyttäjältä puuttu superuser oikeudet) ja asia raportoitiin lokiin. USER kohtaa en oikein osaa analysoida, mutta veikkaan, että tuo on lokitiedon lisännyt käyttäjä, tässä tapauksessa root.  
   
   
-Onnistunut tapahtuma(**Lisätty 2.2.2022 illalla**):
-Jan 29 13:33:45 derpface sudo:  pajazzo : TTY=pts/0 ; PWD=/home/pajazzo/DataSecurityCourse2022 ; USER=root ; COMMAND=/usr/bin/apt-get update
+Onnistunut tapahtuma(**Lisätty 2.2.2022 illalla**):  
+Jan 29 13:33:45 derpface sudo:  pajazzo : TTY=pts/0 ; PWD=/home/pajazzo/DataSecurityCourse2022 ; USER=root ; COMMAND=/usr/bin/apt-get update  
 
 Tässä siis taasen käyttäjä pajazzo ilmoitettuna ajankohtana derpface hostilla ja käyttäen pts/0 terminaali-istuntoa, on suorittanut root oikeuksilla apt-get update komennon eli päivittänyt paketinhallinnan tiedot uusimpaan. Käyttäjä on komennon aikaan ollut kansiossa /home/pajazzo/DataSecurityCourse2022, mutta se on tämän kannalta epäoleellinen tieto.  
 
