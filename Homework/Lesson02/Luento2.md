@@ -10,8 +10,20 @@ Kurssin vetäjä: [Tero Karvinen](https://terokarvinen.com/2021/linux-palvelimet
 * Karvinen 2020: [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/)  
 * YCombinator Hacker News, [vapaavalintainen artikkeli kommentteineen Linuxin komentokehotteesta](https://hn.algolia.com/?dateEnd=1643270199&dateRange=custom&dateStart=1547942400&page=0&prefix=false&query=command%20line&sort=byPopularity&type=story) (Kommentit aukeavat siitä pienestä "420 comments" linkistä Riittää, kun silmäilet artikkelin ja kommentit soveltuvin osin, osa voi olla kirjan mittaisia etkä ehdi tässä lukea niitä kokonaan. Samoin tiivistelmäksi riittää muutama bulletti, ei tarvitse kattaa koko sisältöä)  
 
-* Jotenkin unohtui kokonaan tämä osio tehtävästä, kun keskityin muihin. Kirjoittelen huomenna 3.2.2022 vastauksen tähän.  
-  
+### 5 Command Line Tools to Break Your Dependence on the GUI (kirjoitettu 3.2.2022)
+Artikkeli: https://www.putorius.net/5-cool-command-line-tools.html  
+Hackernew kommenttiosio: https://news.ycombinator.com/item?id=21711761  
+
+Artikkeli esittelee Linux sysadmineille erilaisia komentoriviltä pyöriviä sovelluksia jotta nämä eivät joutuisi selainta käyttäessään erilaisten houkutusten, kuten sosiaalisen median vietäviksi tehokkaan työskentelyn sijaan.  
+Esitellyt työkalut ovat:  
+* wttr.in - käyttö curl wttr.in/ komennolla ja mahdollisilla argumenteilla kuten wttr.in/Helsinki?0 joka palauttaa Helsingin tämän hetkisen sään komentoriville. Vaikuttaa itseasiassa kätevältä. Ilman argumentteja saat IP-osoitteesi paikkakunnan sään ja ennusteen useammalle päivälle.    
+* bc komento laskimen käyttöön.  
+* dictd sanakirja joka asennetaan apt-get install dictd komennolla. Itselläni tuo ei alkanut asennuksen ja uuden komentokehotteen avaamisenkaan jälkeen toimimaan. Sama kirjoittaja on myös kirjoittanut kyseisestä sovelluksesta aikaisemman [artikkelin](https://www.putorius.net/linux-command-line-dictionary.html) jossa itsekin epäilee sen tarpeellisuutta tänä päivänä.  
+* googler eli Google haut komentokehotteelta. En lähde testaamaan, koska en näe itse tarvetta tällaiselle.  
+* aspell oikeinkirjoituksen tarkistus -sovellus. En tätäkään lähde asentamaan nyt.  
+Artikkelin otsikko oli mielenkiintoinen, minkä takia aloinkin sitä lukemaan. En kuitenkaan tunnista ongelmaa, jonka kirjoittaja esittää. Jos etsin  ratkaisua selaimen kanssa, harvemmin eksyn sivuraiteille, koska olen keskittynyt ongelmanratkaisuun (enkä käytä juurikaan googlea joka artikkelilla mainitaan pahana mainosten syöttäjänä). Samanlaista kommentointia löytyy myös Hackernewsin [kommenttiosastolta](https://news.ycombinator.com/item?id=21711761). Mm. kommentti käyttäjältä pjmlp "I love my dependence on the GUI, otherwise would still be stuck using MS-DOS." on varsin osuva, koska GUI ei todellakaan ole ikävä asia vaan kehityksen mukanaan tuoma helpotus käyttäjille.  
+Oma näkemykseni on kuitenkin kuten artikkelin kirjoittajallakin, että komentoriviltä voi suorittaa useita asioita paljon GUI:ta kätevämmin (kirjoitin itse pienen skriptin, jolla saan kurssin sivulta kätevästi määrittämäni viikon kotitehtävät haluamaani tiedostoon selkokielisenä). Kuitenkin kirjoittajan lähestymitapa ongelmaan ei juurikaan puhuttele minua.  cd
+
 ## a) FHS. Esittele kansiot, jotka on listattu [Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/) kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
 
 1. / eli root  
