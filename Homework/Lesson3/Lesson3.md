@@ -1,6 +1,9 @@
-h3
+# Luento 3 Kotitehtävät
+  
+Osa kurssia Linux Palvelimet ICT4TN021-3018 Haaga-Helia Ammattikorkeakoulussa  
+Kurssin vetäjä: [Tero Karvinen](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/)  
 
-Apassi
+## Apassi 
 
 Tee viisi vapaavalintaista kohtaa. Säädä vaikeustaso oikeaksi: helpoimmat ovat
 ensimmäiset a b c d e. Jos osaat jo perusteet, tee useampia tai vaikeampia
@@ -10,10 +13,10 @@ tunnilla.
 
 
 
-* a) Asenna Apache ja osoita testillä, että se toimii.  
+### a) Asenna Apache ja osoita testillä, että se toimii.  
 Start time: 2022/02/07T11:21
 sudo apt-get install apache2  
-pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ sudo systemctl status apache2  
+pajazzo@derpface:\~/Projects/Linux-Palvelimet-2022$ sudo systemctl status apache2  
   apache2.service - The Apache HTTP Server  
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor prese>  
      Active: active (running) since Mon 2022-02-07 11:21:19 EET; 30s ago  
@@ -37,27 +40,27 @@ localhost/ osoitteesta löytyy selaimella Apachen oletussivu.
 
 Finished: 2022/02/07T11:26  
 
-* b) Laita käyttäjien kotisivut (http://example.com/~tero) toimimaan. Testaa esimerkkikotisivulla.  
+### b) Laita käyttäjien kotisivut (http://example.com/~tero) toimimaan. Testaa esimerkkikotisivulla.  
 
 Start time: 2022/02/07T11:33  
 
-pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ sudo a2enmod userdir  
+pajazzo@derpface:\~/Projects/Linux-Palvelimet-2022$ sudo a2enmod userdir  
 Enabling module userdir.  
 To activate the new configuration, you need to run:  
   systemctl restart apache2  
-pajazzo@derpface:~/Projects/Linux-Palvelimet-2022$ sudo systemctl restart apache2  
-pajazzo@derpface:~$ mkdir public_html  
-pajazzo@derpface:~$ ls -l | grep public_html  
+pajazzo@derpface:\~/Projects/Linux-Palvelimet-2022$ sudo systemctl restart apache2  
+pajazzo@derpface:\~$ mkdir public_html  
+pajazzo@derpface:\~$ ls -l | grep public_html  
 drwxr-xr-x 2 pajazzo pajazzo  4096 Feb  7 11:39 public_html  
-pajazzo@derpface:~$ cd public_html/  
-pajazzo@derpface:~/public_html$ nano index.html  
+pajazzo@derpface:\~$ cd public_html/  
+pajazzo@derpface:\~/public_html$ nano index.html  
 
 Lisäsin index.html tiedostoon vähän tekstiä ja nyt sivut toimivat:  
 <img src="usersiteWorks.png">  
   
 Finished: 2022/02/07T11:42   
 
-* c) Tee validi HTML5 sivu, ja testaa sen toiminta https://validator.w3.org  
+### c) Tee validi HTML5 sivu, ja testaa sen toiminta https://validator.w3.org  
 
 Start time: 2022/02/07T12:00
 
@@ -68,7 +71,7 @@ Laitoin tiedoston sisällö myös index.html:n sisällöksi palvelimelleni.
 
 Finished: 2022/02/07T12:10
 
-* d) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit eli kerro jokaisesta rivistä niin paljon yksityiskohtia kuin osaat.  
+### d) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit eli kerro jokaisesta rivistä niin paljon yksityiskohtia kuin osaat.  
 
 Start time: 2022/02/07T12:11  
 
@@ -109,7 +112,7 @@ Tässä ei ole muuta eroa edelliseen kuin statuskoodin muuttuminen sekä sivu jo
   
 Finished: 2022/02/07T13:24  
   
-* e) Vaihda Apachen esimerkkisivu johonkin lyhyeen sivuun niin, että vanha esimerkkisivu ei näy. (Tämä lienee ainoa kohta, jossa ikinä muokkaat weppisivua pääkäyttäjän oikeuksin. /var/www/html/index.html)  
+### e) Vaihda Apachen esimerkkisivu johonkin lyhyeen sivuun niin, että vanha esimerkkisivu ei näy. (Tämä lienee ainoa kohta, jossa ikinä muokkaat weppisivua pääkäyttäjän oikeuksin. /var/www/html/index.html)  
   
 Start time: 2022/02/07T13:26
 
@@ -126,11 +129,11 @@ Start time: 2022/02/07T13:26
   
 Finished: 2022/02/07T13:30    
 
-* f) Tee virhe johonkin Apachen asetustiedostoon, etsi ja analysoi tuo rivi. Etsimiseen sopivat esimerkiksi Apachen omat lokit, syslog sekä ‘apache2ctl
-  configtest’.  
-* g) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi  
-* h) Asenna ja kokeile PhpMyAdmin:a tai jotain muuta valmista weppiliittymää tietokantojen hallinnointiin.  
-* i) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)  
+### f) Tee virhe johonkin Apachen asetustiedostoon, etsi ja analysoi tuo rivi. Etsimiseen sopivat esimerkiksi Apachen omat lokit, syslog sekä ‘apache2ctl
+  configtest’.
+### g) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi  
+### h) Asenna ja kokeile PhpMyAdmin:a tai jotain muuta valmista weppiliittymää tietokantojen hallinnointiin.  
+### i) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)  
 
 Start time: 2022/02/07T13:39  
 
@@ -172,10 +175,22 @@ Testataan toimintaa:
   
 Finished: 2022/02/07T15:50
 
-* j) Tee palvelimella ajettava weppiohjelma, joka käyttää tietokantaa. Voit tehdä jonkin yksinkertaisen CRUD-ohjelman, esimerkiksi TODO-listan  
-* k) Tee Apachelle uusi sivu, joka näkyy suoraan palvelimen pääsivulla, mutta jonka sivuja voi muokata normaalin käyttäjän oikeuksilla (name based virtual host, DocumentRoot käyttäjän kotihakemistoon).  
-* i) Kuinka monta eri HTTP Status:ta (200, 404, 500…) saat aiheutettua lokeihin? Selitä, miten aiheutit tilanteet ja analysoi yksi rivi kustakin statuksesta.  
-* l) Asenna LAMP (Linux, Apache, MySQL, PHP). Testaa kunkin komponentin toiminta. Testaa lopuksi kokonaisuus. (Voit aloittaa tilanteesta, jossa Linux-käyttöjärjestelmä on jo asennettu, mutta ei muita (AMP) osia.  
-* m) Kokeile jotain Flaskin uutta ominaisuutta flask-testipalvelimessa. Voit kokeilla esim. muotteja (templates), tietokantaa tai syötteiden ottamista lomakkeilta (forms).  
-* n) Asenna Python Flask + PostgreSQL + Apache mod WSGI. Testaa kunkin komponentin toiminta. Testaa lopuksi kokonaisuus. (vaikea) ja voit muokata sitä ilman pääkäyttäjän oikeuksia.  
-* o) Laita kaksi nimeä samaan IP-osoitteeseen. Voit simuloida nimipalvelun toimintaa /etc/hosts -tiedoston avulla. Eli niin, että samalla palvelimella osoitteella teronlenkkisivu.com tulee eri sisältö kuin osoitteella opipentest.com.  
+### j) Tee palvelimella ajettava weppiohjelma, joka käyttää tietokantaa. Voit tehdä jonkin yksinkertaisen CRUD-ohjelman, esimerkiksi TODO-listan  
+  
+  
+### k) Tee Apachelle uusi sivu, joka näkyy suoraan palvelimen pääsivulla, mutta jonka sivuja voi muokata normaalin käyttäjän oikeuksilla (name based virtual host, DocumentRoot käyttäjän kotihakemistoon).  
+  
+
+### i) Kuinka monta eri HTTP Status:ta (200, 404, 500…) saat aiheutettua lokeihin? Selitä, miten aiheutit tilanteet ja analysoi yksi rivi kustakin statuksesta.  
+  
+
+### l) Asenna LAMP (Linux, Apache, MySQL, PHP). Testaa kunkin komponentin toiminta. Testaa lopuksi kokonaisuus. (Voit aloittaa tilanteesta, jossa Linux-käyttöjärjestelmä on jo asennettu, mutta ei muita (AMP) osia.  
+  
+
+### m) Kokeile jotain Flaskin uutta ominaisuutta flask-testipalvelimessa. Voit kokeilla esim. muotteja (templates), tietokantaa tai syötteiden ottamista lomakkeilta (forms).  
+  
+
+### n) Asenna Python Flask + PostgreSQL + Apache mod WSGI. Testaa kunkin komponentin toiminta. Testaa lopuksi kokonaisuus. (vaikea) ja voit muokata sitä ilman pääkäyttäjän oikeuksia.  
+  
+
+### o) Laita kaksi nimeä samaan IP-osoitteeseen. Voit simuloida nimipalvelun toimintaa /etc/hosts -tiedoston avulla. Eli niin, että samalla palvelimella osoitteella teronlenkkisivu.com tulee eri sisältö kuin osoitteella opipentest.com.  
