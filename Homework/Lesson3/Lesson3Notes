@@ -1,0 +1,45 @@
+Demonit
+Apache
+
+Palvelin, joka on palvelimella, joka on palvelimella jne.
+
+Samat tekniikat joita opetellaan Apachen kanssa pätevät myös muihin palvelimiin, koska Linux järjestelmissä on niin tiukat säännöt mm. sijaintien sun muiden suhteen.
+Webbipalvelimen päähän ohjelmoidut sovellukset takaavat sen, että käyttäjilla on käytössä viimeisin versio, sekä sovellus toimii lhtökohtaisesti kaikilla käyttöjärjestelmillä.
+
+curlilla voi saada järkevämpiä virheilmoituksia kuin selaimella (esim. curl http://localhost)
+
+Apache 2 index tiedosto /var/www/html/index.html
+- Voi muokata sudoedit komennolla esim
+Apache lokit var/log/apache2 kansiossa
+Apache työkalut alkavat a2 (sudo a2)
+
+pajazzo@derpface:/var/log$ sudo a2enmod userdir
+Enabling module userdir.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+sudo systemctl restart apache2 
+
+sudo systemctl start/stop/restart/status apache2
+systemctlin kautta kaikki palvelimien hallinta
+Kannattaa tarkistaa selaimella ensin toimivatko asiat, koska sitä loppukäyttäjä käyttää
+
+curl -i ottaa headerit mukaan
+grep --color värittää
+pstree prosessipuu
+chgrp group dir/ vaihtaa omistajan (-R rekursiivisesti)
+lsblk ilmoittaa kiinni olevat kovalevyt
+df -h näyttää kaikki mountit
+
+todo.txt sovellus
+
+^Z pysäyttää sovelluksen
+bg laittaa sen tausta-ajoon
+kill -9 + prosessinumero tappaa prosessit ja lapset välittömästi (ei ehkä kannata käyttää)
+killall -9 nimi tappaa kaikki nimelliset kaikilta käyttäjiltä
+killiä kannattaa käyttää vaan jäätyneisiin sovelluksiin. Palvelimia sammutellaan vain systemclt:lla
+
+
+passwd tiedosto on jäänne menneisyydestä, pitää sisällään vain käyttäjänimiä.  
+salasanojen tiivisteet ovat shadow tiedostossa.  
+
+HTTP status koodeissa ensimmäinen numero tärkein. Esim 4 alkuiset ovat käyttäjävirheitä.
