@@ -129,10 +129,12 @@ Start time: 2022/02/07T13:26
   
 Finished: 2022/02/07T13:30    
 
-### f) Tee virhe johonkin Apachen asetustiedostoon, etsi ja analysoi tuo rivi. Etsimiseen sopivat esimerkiksi Apachen omat lokit, syslog sekä ‘apache2ctl
-  configtest’.
-### g) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi  
+### f) Tee virhe johonkin Apachen asetustiedostoon, etsi ja analysoi tuo rivi. Etsimiseen sopivat esimerkiksi Apachen omat lokit, syslog sekä ‘apache2ctl configtest’.
+  
+### g) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi 
+  
 ### h) Asenna ja kokeile PhpMyAdmin:a tai jotain muuta valmista weppiliittymää tietokantojen hallinnointiin.  
+  
 ### i) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)  
 
 Start time: 2022/02/07T13:39  
@@ -177,10 +179,41 @@ Finished: 2022/02/07T15:50
 
 ### j) Tee palvelimella ajettava weppiohjelma, joka käyttää tietokantaa. Voit tehdä jonkin yksinkertaisen CRUD-ohjelman, esimerkiksi TODO-listan  
   
-  
-### k) Tee Apachelle uusi sivu, joka näkyy suoraan palvelimen pääsivulla, mutta jonka sivuja voi muokata normaalin käyttäjän oikeuksilla (name based virtual host, DocumentRoot käyttäjän kotihakemistoon).  
-  
 
+### k) Tee Apachelle uusi sivu, joka näkyy suoraan palvelimen pääsivulla, mutta jonka sivuja voi muokata normaalin käyttäjän oikeuksilla (name based virtual host, DocumentRoot käyttäjän kotihakemistoon).  
+
+Star time: 2022/02/07T16:40
+
+Tämä olikin hiukan hankalampi. Koska aiemmassa selvityksessä [täällä](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-18-04) ilmoitettiin oletus Virtual Hostin sijainti ja nimi, aloin muokkaamaan kyseistä tiedostoa:  
+/etc/apache2/sites-available/000-default.conf  
+Sieltä asetin kohdan DocumentRoot osoittamaan kotihakemistooni luotuun kansioon ~/sites/front, johon olin luonut index.html tiedoston.  
+Tämän muokkauksen jälkeen sivut eivät enää toimineet lainkaan vaan sain 403 permission virhettä kaikilla sivuilla.  
+sudo apachectl configtest ilmoitti, että luomani taxman sovelluksen polkua /var/www/html/taxman ei olisi olemassa joten päättelin, että jotain muutakin pitää konfiguraatiossa muuttaa.   
+Löysin pienen haun jälkeen sivun: https://www.digitalocean.com/community/tutorials/how-to-move-an-apache-web-root-to-a-new-location-on-ubuntu-16-04 jonne oli kirjoitettu hyvin selkeät ohjeet kuinka tiedostoja muutetaan ja lähdin niillä kokeilemaan. (Tiedostonimet olivat vähän poikkeavia siitä, mitä itselläni on, mutta tarpeeksi samanlaisia).    
+Tiesin jo tässä vaiheessa tuon siirrettävän sijainnin eli vanhan DocumentRootin, joten aloitin suoraan tiedostojen siirrosta:  
+pajazzo@derpface:/$ sudo rsync -av /var/www/html /home/pajazzo/sites/front/  ## a optio säilyttää oikeudet samoina ja v antaa enemmän outputtia komentoriville.  
+sending incremental file list  
+html/  
+html/taxman/  
+html/taxman/index.html  
+html/taxman/javascript/  
+html/taxman/javascript/js.js  
+
+Muokkasin tämän jälkeen tiedostoon /etc/apache2/sites-available/000-default.conf seuraavat tummennetut rivit:  
+<img src="editedDefaultConf.png">  
+Itse DocumentRootin olin vaihtanut jo tehtävän alussa.  
+Tämän jälkeen kävin vielä muokkaamassa DocumentRootin oikeaksi /etc/apache2/sites-available/taxman.conf tiedostoon, jotta tuokin tekemäni sovellus alkaisi pelaamaan.  
+  
+pajazzo@derpface:/$ sudo apachectl configtest  
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message  
+Syntax OK  
+pajazzo@derpface:/$ sudo systemctl reload apache2  
+  
+apachen uudelleenlataamisen jälkeen etusivu alkoi taas toimia normaalisti, mutta rsyncillä siirtäessäni taxman -sovelluksen kansio jäi nyt turhaksi käyneeseen html -kansioon. Siirsin myös taxmanin uuden front kansion alle ja latasin uudelleen apache2 komponentit. Kaikki sivut toimivat.    
+Varmistin vielä toisella käyttäjällä toiminnan.  
+  
+Finished: 2022/02/07T17:40
+  
 ### i) Kuinka monta eri HTTP Status:ta (200, 404, 500…) saat aiheutettua lokeihin? Selitä, miten aiheutit tilanteet ja analysoi yksi rivi kustakin statuksesta.  
   
 
