@@ -73,7 +73,7 @@ Finished: 2022/02/07T12:10
 Start time: 2022/02/07T12:11  
 
 Loin index sivulleni relative linkin tiedostoon some.html, mikä varmasti aiheuttaa virheen, ettei sivua löydy. Testi, ja näin tosiaan tapahtui:  
-<img src="HbrokenLinkTest1.png"> -----> <img src="brokenLinkTest2.png">  
+<img src="brokenLinkTest1.png"> -----> <img src="brokenLinkTest2.png">  
   
 Apache lokit:  
 `pajazzo@derpface:/$ cd var/log/`  
