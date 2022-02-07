@@ -122,7 +122,7 @@ Start time: 2022/02/07T13:26
 `index.html`  
 `pajazzo@derpface:/var/www/html$ sudo gedit index.html`  
   
-<img src="emptyIndex.html">  
+<img src="emptyIndex.png">  
   
 Finished: 2022/02/07T13:30    
 
@@ -143,7 +143,7 @@ Onnistuin vahingossa poistumaan terminaalista, mutta tässä historian (history)
 2083  sudo chmod -R 755 /var/www/html/taxman/  ## Annetaan lukuoikeudet ja suoritusoikeudet ryhmän jäsenille ja muille. Täydet oikeudet omistajalle.  
 ls -l palauttaa seuraavaa:  
 drwxr-xr-x 2 pajazzo pajazzo 4096 Feb  7 13:50 taxman  
-2085  sudo gedit taxman/index.html   ## Kotisivun luonti
+2085  sudo gedit taxman/index.html   ## Kotisivun luonti  
 2086  sudo nano /etc/apache2/sites-available/taxman.conf ## Sivun konfiguraation luonti.  
 Konfiguraatiotiedoston sisältö:  
 <\VirtualHost *:80> ## Tämä osio määrittää, että VirtualHost kuuntelee kaikkia porttiin 80 tehtyjä pyyntöjä. 80 on HTTP:n vakioportti.  
@@ -158,7 +158,7 @@ Konfiguraatiotiedoston sisältö:
 2087  sudo a2ensite taxman.conf   ## Aktivoidaan sivu taxman  
 2088  sudo systemctl reload apache2  ## Ladataan apache2 komponentit uudelleen.  
   
-Testataan, että sivu lähti toimimaan: <img src="taxmantest.png">  
+Testataan, että sivu lähti toimimaan: <img src="taxmanTest.png">  
   
 Tehdään sovellukselle lomake, joka pyytää palkkaa ja veroprosenttia syötteenä, sekä elementti johon vastaus lopulta syötetään.     
 Tehdään sovellukselle javascript kansio ja tiedosto js.js johon kirjoitetaan simppeli funktio, joka laskee verot syötetyn palkan ja veroprosentin mukaan, sekä syöttää vastauksen sille määritellylle paikalle sivulla.  
@@ -170,6 +170,7 @@ Testataan toimintaa:
   
 <img src="taxmanWorks2.png">  
   
+Finished: 2022/02/07T15:50
 
 * j) Tee palvelimella ajettava weppiohjelma, joka käyttää tietokantaa. Voit tehdä jonkin yksinkertaisen CRUD-ohjelman, esimerkiksi TODO-listan  
 * k) Tee Apachelle uusi sivu, joka näkyy suoraan palvelimen pääsivulla, mutta jonka sivuja voi muokata normaalin käyttäjän oikeuksilla (name based virtual host, DocumentRoot käyttäjän kotihakemistoon).  
