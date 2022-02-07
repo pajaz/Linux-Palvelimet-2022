@@ -62,7 +62,7 @@ Finished: 2022/02/07T11:42
 Start time: 2022/02/07T12:00
 
 Tein pikaisesti [HTML](myhtml.html)-sivun, jonka ajoin validaattorin läpi.  
-<img src="Homework/Lesson3/htmlValidated.png">  
+<img src="htmlValidated.png">  
   
 Laitoin tiedoston sisällö myös index.html:n sisällöksi palvelimelleni.  
 
@@ -73,7 +73,7 @@ Finished: 2022/02/07T12:10
 Start time: 2022/02/07T12:11  
 
 Loin index sivulleni relative linkin tiedostoon some.html, mikä varmasti aiheuttaa virheen, ettei sivua löydy. Testi, ja näin tosiaan tapahtui:  
-<img src="Homework/Lesson3/brokenLinkTest1.png"> -----> <img src="Homework/Lesson3/brokenLinkTest2.png">  
+<img src="HbrokenLinkTest1.png"> -----> <img src="brokenLinkTest2.png">  
   
 Apache lokit:  
 `pajazzo@derpface:/$ cd var/log/`  
@@ -165,7 +165,10 @@ Tehdään sovellukselle javascript kansio ja tiedosto js.js johon kirjoitetaan s
 Lisätään index.html tiedostoon <\script>"javascript/js.js"<\script> osio, jotta kutsutut funktiot haetaan oikeasta paikasta.  
 Lisätään lomakkeelle submit painike, joka kutsuu äskettäin tehtyä funktioita painettaessa.  
 
-Testataan toimintaa: <img src="taxmanWorks1.png"> <img src="taxmanWorks2.png">  
+Testataan toimintaa:   
+<img src="taxmanWorks1.png">  
+  
+<img src="taxmanWorks2.png">  
   
 
 * j) Tee palvelimella ajettava weppiohjelma, joka käyttää tietokantaa. Voit tehdä jonkin yksinkertaisen CRUD-ohjelman, esimerkiksi TODO-listan  
