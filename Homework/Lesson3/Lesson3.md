@@ -143,26 +143,34 @@ Lähde: https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-vi
 Ohjeet sivulla ovat Ubuntulle, mutta kaikki komennot ja kansiorakenteet näyttävät identtisiltä Debian 11 kanssa eli käytän tätä. Sivu myös selittää vaiheet suhteellisen ymmärrettävästi.  
   
 Onnistuin vahingossa poistumaan terminaalista, mutta tässä historian (history) kautta käytetyt komennot:  
-`2081  sudo mkdir taxman`  **Luotiin kansio sovellukselle /var/www/html/taxman**  
-`2082  sudo chown -R $USER:$USER /var/www/html/taxman`  **Asetettiin kansion oikeudet kuntoon chown (change owner) -komennolla. ja sen -R optio ilmoittaa, että oikeudet muutetaan rekursiivisesti kaikille alikansioille ja tiedostoille.**  
-`2083  sudo chmod -R 755 /var/www/html/taxman/`  **Annetaan lukuoikeudet ja suoritusoikeudet ryhmän jäsenille ja muille. Täydet oikeudet omistajalle.**  
+`2081  sudo mkdir taxman`  
+Luotiin kansio sovellukselle /var/www/html/taxman  
+`2082  sudo chown -R $USER:$USER /var/www/html/taxman`  
+Asetettiin kansion oikeudet kuntoon chown (change owner) -komennolla. ja sen -R optio ilmoittaa, että oikeudet muutetaan rekursiivisesti kaikille alikansioille ja tiedostoille.  
+`2083  sudo chmod -R 755 /var/www/html/taxman/`  
+Annettiin lukuoikeudet ja suoritusoikeudet ryhmän jäsenille ja muille. Täydet oikeudet omistajalle.  
 ls -l palauttaa seuraavaa:  
 `drwxr-xr-x 2 pajazzo pajazzo 4096 Feb  7 13:50 taxman`  
-`2085  sudo gedit taxman/index.html`   **Kotisivun luonti**  
-`2086  sudo nano /etc/apache2/sites-available/taxman.conf` **Sivun konfiguraation luonti.**  
+  
+`2085  sudo gedit taxman/index.html`   
+Kotisivun luonti  
+`2086  sudo nano /etc/apache2/sites-available/taxman.conf`   
+Sivun konfiguraation luonti.  
   
 Konfiguraatiotiedoston sisältö:  
-<\VirtualHost *:80> **Tämä osio määrittää, että VirtualHost kuuntelee kaikkia porttiin 80 tehtyjä pyyntöjä. 80 on HTTP:n vakioportti.**  
-    ServerAdmin admin@taxman.com    **Adminin sähköpostiosoite**  
-    ServerName taxman.com           **Palvelimen nimi (laitoin tähän nyt vähän satunnaisen osoitteen**  
-    ServerAlias www.taxman.com      **Muita nimiä, jotka käsittellään kuin ne olisivat Palvelimen nimi**  
-    DocumentRoot /var/www/taxman    **TÄRKEÄ, eli sovelluksen juuri**  
-    ErrorLog ${APACHE_LOG_DIR}/error.log    **Sovelluksen virhelokin kirjoitussijainti, vakio**  
-    CustomLog ${APACHE_LOG_DIR}/access.log combined   **Sovelluksen accesslogin kirjoitussijanti, vakio**  
+<\VirtualHost *:80> Tämä osio määrittää, että VirtualHost kuuntelee kaikkia porttiin 80 tehtyjä pyyntöjä. 80 on HTTP:n vakioportti.  
+    ServerAdmin admin@taxman.com    Adminin sähköpostiosoite  
+    ServerName taxman.com           Palvelimen nimi (laitoin tähän nyt vähän satunnaisen osoitteen  
+    ServerAlias www.taxman.com      Muita nimiä, jotka käsittellään kuin ne olisivat Palvelimen nimi  
+    DocumentRoot /var/www/taxman    TÄRKEÄ, eli sovelluksen juuri  
+    ErrorLog ${APACHE_LOG_DIR}/error.log    Sovelluksen virhelokin kirjoitussijainti, vakio  
+    CustomLog ${APACHE_LOG_DIR}/access.log combined   Sovelluksen accesslogin kirjoitussijanti, vakio  
 <\/VirtualHost>
   
-`2087  sudo a2ensite taxman.conf`   **Aktivoidaan sivu taxman**  
-`2088  sudo systemctl reload apache2`  **Ladataan apache2 komponentit uudelleen.**  
+`2087  sudo a2ensite taxman.conf`   
+Aktivoidaan sivu taxman. Sivu siirtyy tässä vaiheessa /etc/apache2/sites-available/taxman.conf kansiosta /etc/apache2/sites-enabled/taxman.conf kansioon. Tiedosto löytyy yhä molemmista sijainneista ja niiden välillä on symlink eli muutokset yhteen tiedostoon astuvat voimaan toiseenkin.  
+`2088  sudo systemctl reload apache2`  
+Ladataan apache2 komponentit uudelleen.  
   
 Testataan, että sivu lähti toimimaan:  
 <img src="taxmanTest.png">  
