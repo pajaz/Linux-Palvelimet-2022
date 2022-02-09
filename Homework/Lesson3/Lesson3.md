@@ -150,6 +150,7 @@ ls -l palauttaa seuraavaa:
 `drwxr-xr-x 2 pajazzo pajazzo 4096 Feb  7 13:50 taxman`  
 `2085  sudo gedit taxman/index.html`   **Kotisivun luonti**  
 `2086  sudo nano /etc/apache2/sites-available/taxman.conf` **Sivun konfiguraation luonti.**  
+  
 Konfiguraatiotiedoston sisältö:  
 <\VirtualHost *:80> **Tämä osio määrittää, että VirtualHost kuuntelee kaikkia porttiin 80 tehtyjä pyyntöjä. 80 on HTTP:n vakioportti.**  
     ServerAdmin admin@taxman.com    **Adminin sähköpostiosoite**  
