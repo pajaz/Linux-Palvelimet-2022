@@ -92,9 +92,10 @@ Epäonnistunut tapahtuma:
   
 Puretaan ylempää osiin [tämän](https://httpd.apache.org/docs/current/logs.html#common) tulkintaohjeen mukaisesti:  
 Tieto | Selitys
+---|---
 127.0.0.1: | IP-osoite josta pyyntö tapahtumalle tuli. Tällä kertaa se taitaakin olla palvelimen oma osoite, koska käytin selainta samalla koneella.  
-- | Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident). Jos ymmärsin oikein, tämä on käyttäjän koneen ilmoittama ja erittäin epäluotettava tieto muutenkin.  
-- | HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
+\- | Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident). Jos ymmärsin oikein, tämä on käyttäjän koneen ilmoittama ja erittäin epäluotettava tieto muutenkin.  
+\- | HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
 [07/Feb/2022:12:17:44 +0200] | Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa.  
 "GET /some.html HTTP/1.1" | Pyynnön tyyppi eli GET, mitä resurssia pyyntö koskee (/some.html) ja mitä protokollaa on käytetty HTTP/1.1  
 404 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [404](https://en.wikipedia.org/wiki/HTTP_404) eli sivua ei löydy.  
