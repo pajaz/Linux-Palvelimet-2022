@@ -91,15 +91,16 @@ Epäonnistunut tapahtuma:
 `127.0.0.1 - - [07/Feb/2022:12:17:44 +0200] "GET /some.html HTTP/1.1" 404 488 "http://localhost/~pajazzo/" "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"`  
   
 Puretaan ylempää osiin [tämän](https://httpd.apache.org/docs/current/logs.html#common) tulkintaohjeen mukaisesti:  
-127.0.0.1: IP-osoite josta pyyntö tapahtumalle tuli. Tällä kertaa se taitaakin olla palvelimen oma osoite, koska käytin selainta samalla koneella.  
--: Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident). Jos ymmärsin oikein, tämä on käyttäjän koneen ilmoittama ja erittäin epäluotettava tieto muutenkin.  
--: HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
-[07/Feb/2022:12:17:44 +0200]: Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa.  
-"GET /some.html HTTP/1.1": Pyynnön tyyppi eli GET, mitä resurssia pyyntö koskee (/some.html) ja mitä protokollaa on käytetty HTTP/1.1  
-404: Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [404](https://en.wikipedia.org/wiki/HTTP_404) eli sivua ei löydy.  
-488: Käyttäjälle palautetun tiedoston koko tavuina (edit. 2022/2/9).  
-"http://localhost/~pajazzo/": Miltä sivulta pyyntö tuli eli tässä tapauksessa sivu jolla käyttäjä oli, kun klikkasi rikkinäistä linkkiä.  
-"Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"`: Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
+Tieto | Selitys
+127.0.0.1: | IP-osoite josta pyyntö tapahtumalle tuli. Tällä kertaa se taitaakin olla palvelimen oma osoite, koska käytin selainta samalla koneella.  
+- | Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident). Jos ymmärsin oikein, tämä on käyttäjän koneen ilmoittama ja erittäin epäluotettava tieto muutenkin.  
+- | HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
+[07/Feb/2022:12:17:44 +0200] | Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa.  
+"GET /some.html HTTP/1.1" | Pyynnön tyyppi eli GET, mitä resurssia pyyntö koskee (/some.html) ja mitä protokollaa on käytetty HTTP/1.1  
+404 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [404](https://en.wikipedia.org/wiki/HTTP_404) eli sivua ei löydy.  
+488 | Käyttäjälle palautetun tiedoston koko tavuina (edit. 2022/2/9).  
+"http://localhost/~pajazzo/" | Miltä sivulta pyyntö tuli eli tässä tapauksessa sivu jolla käyttäjä oli, kun klikkasi rikkinäistä linkkiä.  
+"Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"` | Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
 
 Tuntemattomaksi jäänyt käyttäjä yritti IP-osoitteesta 127.0.0.1 pyytää tarjoamaan resurssia /some.html sivun http://localhost/~pajazzo/ kautta. Käyttäjälle ilmoitettiin virhe 404 sivua ei löydy, koska kyseistä sivua ei ole olemassa. Käyttäjän selain ilmoitti pyynnön yhteydessä olevansa Mozilla Firefox 91.0 ja toimivansa 64-bittisellä x86 arkkitehtuurin (https://en.wikipedia.org/wiki/X86) Linux-käyttöjärjestelmällä. Suositellaan korjaamaan kyseinen linkki sivulla.   
    
