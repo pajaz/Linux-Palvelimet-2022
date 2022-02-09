@@ -97,7 +97,7 @@ Puretaan ylempää osiin [tämän](https://httpd.apache.org/docs/current/logs.ht
 [07/Feb/2022:12:17:44 +0200]: Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa.  
 "GET /some.html HTTP/1.1": Pyynnön tyyppi eli GET, mitä resurssia pyyntö koskee (/some.html) ja mitä protokollaa on käytetty HTTP/1.1  
 404: Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [404](https://en.wikipedia.org/wiki/HTTP_404) eli sivua ei löydy.  
-488: Käyttäjälle palautetun tiedoston koko bitteinä.  
+488: Käyttäjälle palautetun tiedoston koko tavuina (edit. 2022/2/9).  
 "http://localhost/~pajazzo/": Miltä sivulta pyyntö tuli eli tässä tapauksessa sivu jolla käyttäjä oli, kun klikkasi rikkinäistä linkkiä.  
 "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"`: Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
 
