@@ -157,11 +157,11 @@ Asensin snapin ja käynnistin palvelimen uudelleen, jotta PATH arvot päivittyv�
 Asensin snap coren joka takaa, että snapd:sta on uusin versio asennettuna (mitä tuo sitten tarkoittaakaan):  
 \$ sudo snap install core  
   
-Certbotin asennus ja softlinkin luominen /usr/bin/ sijaintiin, jotta certbot komento on määritetty polkuun ja varmasti käytettävissä kaikkialla.  
+Certbotin asennus(https://certbot.eff.org/instructions?ws=apache&os=debianbuster) ja softlinkin luominen /usr/bin/ sijaintiin, jotta certbot komento on määritetty polkuun ja varmasti käytettävissä kaikkialla.  
 \$ sudo snap install certbot  
 \$ sudo ln -s /snap/bin/certbot /usr/bin/certbot  
   
-Sertifikaatin luominen ja parametrina --apache jolloin certbot myös asentaa valmiin sertifikaatin automaattisesti.  
+Sertifikaatin luominen parametrina --apache jolloin certbot myös asentaa valmiin sertifikaatin automaattisesti.  
 \$ sudo certbot --apache  
   
 Testasin ja sivulle ei saada enää yhteyttä. Testattu Linux kannettavalla Firefox selaimella ja Android puhelimen Microsoft Edge selaimella.  
