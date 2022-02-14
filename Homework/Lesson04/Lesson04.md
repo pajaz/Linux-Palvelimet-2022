@@ -144,7 +144,7 @@ Tietue | Selitys
 \-| Referoija eli miltä sivulta pyyntö tuli.  
 \- | Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
   
-Kyseessä oli selkeä hyökkäysyritys, jossa tunkeutuja yrittää ottaa komentorivin haltuunsa koodi-injektiolla, ladata palvelimelle oletettavasti haitallisen sovelluksen ja käynnistää sen. Hyökkääjän käyttämä pyyntö todettiin kuitenkin palvelimen puolella vialliseksi joten hyökkäys ei edennyt. Nopea katsaus ls -la komennolla /tmp kansioon myös paljastaa, että siellä a) on useita tiedostoja ja kansioita ja b) ei ole hyökkääjän lataamaa sijaintia.   
+Kyseessä oli selkeä hyökkäysyritys, jossa tunkeutuja yrittää ottaa komentokehoitteen haltuunsa koodi-injektiolla, ladata palvelimelle oletettavasti haitallisen sovelluksen juuren /tmp kansioon ja käynnistää sen. Hyökkääjän käyttämä pyyntö todettiin kuitenkin palvelimen puolella vialliseksi joten hyökkäys ei edennyt. Nopea katsaus ls -la komennolla /tmp kansioon myös paljastaa, että siellä a) on useita tiedostoja ja kansioita ja b) ei ole hyökkääjän lataamaa sijaintia.   
    
 ### c) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
   
