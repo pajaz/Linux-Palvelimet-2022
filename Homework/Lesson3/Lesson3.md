@@ -52,7 +52,7 @@ pajazzo@derpface:\~/Projects/Linux-Palvelimet-2022$ sudo systemctl restart apach
 pajazzo@derpface:\~$ mkdir public_html  
 pajazzo@derpface:\~$ ls -l | grep public_html  
 drwxr-xr-x 2 pajazzo pajazzo  4096 Feb  7 11:39 public_html  
-pajazzo@derpface:\~$ cd public_html/  
+pajazzo@derpface:\~$ cd public_html/  to
 pajazzo@derpface:\~/public_html$ nano index.html  
 
 Lisäsin index.html tiedostoon vähän tekstiä ja nyt sivut toimivat:  

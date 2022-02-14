@@ -1,4 +1,24 @@
 Hyviä paikkoja ostaa palvelintilaa:  
 Linode  
 Digitalocean  
+ovh  
+  
 
+Käyttäjä puhuu vain webpalvelimen kanssa (Apache2) > joka puhuu php tai python kanssa > juttelee tietokannanhallintajärjestelmän kanssa
+
+First things when setting up server:
+ssh connection
+root@localhost:~# sudo ufw allow 22/tcp <-------------- TÄRKEÄ SSH yhteys sallitaan ennen kuin ufw päälle
+Rules updated
+Rules updated (v6)
+root@localhost:~# sudo ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+dist upgrade
+käyttäjäluonnit
+apache
+sudo ufw allow 80/tcp (apache)
+
+Advanced DNS valikosta säädöt nc:ssä 
+Luo uudet ja poista sitten vanhat. A record ja www
+ip osoitteeksi sama kuin linodessa. TTL pieneksi jos mahdollista. 
