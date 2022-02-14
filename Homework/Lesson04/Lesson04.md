@@ -180,7 +180,7 @@ Kun sivu oli valmis avasin komentokehoitteen ja siirsin sivut (-r rekursiivisest
   
 \$ scp -rv /Projects/scpTestSite/public_html/ pajazzo@172.104.224.124:/home/pajazzo  
   
-Koska scp yhteys käyttää ssh-yhteyttä, en olettanut tässä tulevan ongelmia eikä tullutkaan. Salasanatarkistuksen jälkeen meni hetki ja sain ilmoituksen onnistuneesta siirrosta.  
+Koska scp käyttää ssh-yhteyttä, en olettanut tässä tulevan ongelmia eikä tullutkaan. Salasanatarkistuksen jälkeen meni hetki ja sain ilmoituksen onnistuneesta siirrosta.  
 Sivut ovat katseltavissa https://mikkopajunen.com/~pajazzo osoitteesta vaikkei siellä hirveästi katseltavaa olekaan.  
   
 Tässä vaiheessa huomasin, että osoite https://www.mikkopajunen.com ei toimi. Mahdollisesti domain-hallinnoijan sivuilta ohjauksia kuntoon?  
