@@ -1,4 +1,7 @@
-h4
+# Luento 4 Kotitehtävät
+  
+Osa kurssia Linux Palvelimet ICT4TN021-3018 Haaga-Helia Ammattikorkeakoulussa  
+Kurssin vetäjä: [Tero Karvinen](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/)  
 
 Vinkki: muista merkitä, mikä kohta raportissasi vastaa mihinkin alakohtaan a,
 b, c...
