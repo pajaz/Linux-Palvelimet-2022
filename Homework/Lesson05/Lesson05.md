@@ -261,14 +261,14 @@ Server: Apache/2.4.52 (Debian)
   
 ### From Debug to Production  
   
-Changed DEBUG = False (I had already set the ALLOWED_HOSTS to localhost in assignment a):
+Changed DEBUG = False (I had already set the ALLOWED_HOSTS to localhost in assignment a):  
 (env) pajazzo@derpface:\~/publicwsgi/getajob$ micro getajob/settings.py  
 
 Restarted the service to apply changes:  
 (env) pajazzo@derpface:\~/publicwsgi/getajob$ sudo systemctl restart apache2  
 (env) pajazzo@derpface:\~/publicwsgi/getajob$ curl -s localhost|grep title  
-  <title>Not Found</title>  
-
+  \<title>Not Found\</title>  
+  
 The admin view looked kind of bad at this point:  
 <img src="adminViewNoCss.png">  
   
