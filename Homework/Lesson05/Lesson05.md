@@ -230,7 +230,7 @@ pajazzo@derpface:/\~/publicwsgi$ virtualenv -p python3 --system-site-packages en
 pajazzo@derpface:/\$ source ~/env/bin/activate  
 (env) pajazzo@derpface:\~/publicwsgi$ which pip  
 /home/pajazzo/publicwsgi/env/bin/pip  
-(env) pajazzo@derpface:\~/publicwsgi$ micro requirements.txt  # django psycopg2
+(env) pajazzo@derpface:\~/publicwsgi$ micro requirements.txt  # django psycopg2  
 (env) pajazzo@derpface:\~/publicwsgi$ pip install -r requirements.txt   
 (env) pajazzo@derpface:/\$ cd ~/publicwsgi/getajob/   
 (env) pajazzo@derpface:\~/publicwsgi/getajob$ ./manage.py runserver   
