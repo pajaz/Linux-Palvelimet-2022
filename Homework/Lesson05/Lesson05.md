@@ -152,13 +152,142 @@ You can see in the form that the voluntary fields are greyed out.
 And success:  
 <img src="firstseekerCreated.png">  
   
+To-Do but for this assignment:  
+Model for Job table.  
+Customized views.  
+Login functionality.  
+Registration functionality.  
   
-## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.  
+  
+## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG. (3.3.2022)  
   
 Source: https://terokarvinen.com/2022/deploy-django/  
+
+
+### Install Apache2
+
+Installed apache2 and confirmed it's working:  
+pajazzo@derpface:\~$ sudo apt-get install apache2  
+pajazzo@derpface:\~$ sudo systemctl status apache2  
+● apache2.service - The Apache HTTP Server  
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor prese>  
+     Active: active (running) since Thu 2022-03-02 23:06:00 EET; 3min 44s ago  
+       Docs: https://httpd.apache.org/docs/2.4/  
+    Process: 737 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUC>  
+   Main PID: 782 (apache2)  
+      Tasks: 55 (limit: 9360)  
+     Memory: 14.3M  
+        CPU: 37ms  
+     CGroup: /system.slice/apache2.service  
+             ├─782 /usr/sbin/apache2 -k start  
+             ├─789 /usr/sbin/apache2 -k start  
+             └─790 /usr/sbin/apache2 -k start  
   
-Requirements:
-Apache2  
+Also checked that the Apache 2 index page is at localhost and replaced it with some text.  
+pajazzo@derpface:/\\$ echo "This is an index page" | sudo tee /var/www/html/index.html   
+This is an index page  
+pajazzo@derpface:/\\$ curl localhost  
+This is an index page  
+
+  
+### Starting the project and adding a new VirtualHost 
+
+Next I went on to create the publicwsgi folder and subfolders (-p) to store my project and created an index.html file.  
+pajazzo@derpface:/\\$ mkdir -p ~/publicwsgi/getajob/static  
+pajazzo@derpface:/\\$ echo "Static content" | tee ~/publicwsgi/getajob/static/index.html  
+Static content  
+  
+Then added made a configuration file for the new host did the VirtualHost settings:  
+pajazzo@derpface:/\\$ sudoedit /etc/apache2/sites-available/getajob.conf  
+Content:             
+<VirtualHost *:80>  
+        Alias /static/ /home/pajazzo/publicwsgi/getajob/static/  
+        <Directory /home/pajazzo/publicwsgi/getajob/static/>  
+                Require all granted  
+        </Directory>  
+</VirtualHost>  
+
+Enabling the site (I didn't copy some of the responses here like the configtest results and the requests from apache to restart):    
+pajazzo@derpface:/\\$ sudo a2ensite getajob.conf  
+Enabling site getajob.  
+pajazzo@derpface:/\\$ sudo a2dissite 000-default.conf   
+Site 000-default disabled.  
+pajazzo@derpface:/\\$ /sbin/apache2ctl configtest  
+Syntax OK  
+pajazzo@derpface:/\\$ sudo systemctl reload apache2.service    
+pajazzo@derpface:/\\$ curl localhost/static/  
+Static content  
+  
+All good so far.  
+  
+### Migrate the a) assignment's project to the correct directory and create a new venv.  
+
+pajazzo@derpface:/\\$ rsync -a /home/pajazzo/Projects/getajob/ /home/pajazzo/publicwsgi/getajob/  
+pajazzo@derpface:/\\$ ls ~/publicwsgi/getajob/   
+getajob  jobseeking  manage.py  static   
+pajazzo@derpface:\\$ cd ~/publicwsgi/  
+pajazzo@derpface:\\~/publicwsgi$ virtualenv -p python3 --system-site-packages env  
+pajazzo@derpface:/\\$ source ~/env/bin/activate  
+(env) pajazzo@derpface:\~/publicwsgi$ which pip  
+/home/pajazzo/publicwsgi/env/bin/pip  
+(env) pajazzo@derpface:\~/publicwsgi$ micro requirements.txt  # django psycopg2
+(env) pajazzo@derpface:\~/publicwsgi$ pip install -r requirements.txt   
+(env) pajazzo@derpface:/\\$ cd ~/publicwsgi/getajob/   
+(env) pajazzo@derpface:\\~/publicwsgi/getajob$ ./manage.py runserver   
+  
+Tried out on the browser and the site runs.  
+  
+
+### Python connection to Apache via mod_wsgi  
+  
+Paths needed:  
+/home/pajazzo/publicwsgi/getajob/  
+/home/pajazzo/publicwsgi/getajob/getajob/wsgi.py  
+/home/pajazzo/publicwsgi/env/lib/python3.9/site-packages/   
+  
+Edited the getajob.conf file, installed the wsgi mod and tried out:  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ sudoedit /etc/apache2/sites-available/getajob.conf  
+  
+<img src="conffile.png">  
+  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ sudo apt-get -y install libapache2-mod-wsgi-py3   
+(env) pajazzo@derpface:~/publicwsgi/getajob$ /sbin/apachectl configtest  
+Syntax OK    
+(env) pajazzo@derpface:~/publicwsgi/getajob$ sudo systemctl restart apache2  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ curl -s localhost|grep title  
+        <title>The install worked successfully! Congratulations!</title>  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ curl -sI localhost|grep Server  
+Server: Apache/2.4.52 (Debian)  
+  
+### From Debug to Production  
+  
+Changed DEBUG = False (I had already set the ALLOWED_HOSTS to localhost in assignment a):
+(env) pajazzo@derpface:~/publicwsgi/getajob$ micro getajob/settings.py  
+
+Restarted the service to apply changes:  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ sudo systemctl restart apache2  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ curl -s localhost|grep title  
+  <title>Not Found</title>  
+
+The admin view looked kind of bad at this point:  
+<img src="adminViewNoCss.png">  
+  
+### Serving the static files  
+  
+(env) pajazzo@derpface:~/publicwsgi/getajob$ micro getajob/settings.py  
+Added:  
+import os (to the start of the file with other imports)   
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') (To the section with STATIC_URL)  
+  
+To make Django use the static files:    
+(env) pajazzo@derpface:~/publicwsgi/getajob$ ./manage.py collectstatic  
+
+<img src="adminSiteCss.png">    
+  
+### End Notes
+  
+How did I not face a single error during the final assignment? Beginner's luck I guess.  
+This was a really good assignment and I even started it out with a clean apache install to memorize the process better.  
 
 
 Tips:
