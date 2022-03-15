@@ -133,10 +133,10 @@ Testasin ssh-yhteyden toimintaa paikallisesti:
 pajunmi@2021lab:~$ ssh localhost  
 The authenticity of host 'localhost (::1)' can't be established.  
 ECDSA key fingerprint is SHA256:yMy5sW4k4q3lViiDXJE/bWckVbHL6wMdFAWL7s1o5Yg.  
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes  
+Are you sure you want to continue connecting (yes/no/\[fingerprint])? yes  
 Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.  
 pajunmi@localhost's password:   
-Linux 2021lab 5.10.0-10-amd64 #1 SMP Debian 5.10.84-1 (2021-12-08) x86_64  
+Linux 2021lab 5.10.0-10-amd64 \#1 SMP Debian 5.10.84-1 (2021-12-08) x86_64  
   
 The programs included with the Debian GNU/Linux system are free software;  
 the exact distribution terms for each program are described in the  
