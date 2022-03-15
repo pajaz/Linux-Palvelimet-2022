@@ -167,7 +167,7 @@ sudo groupadd specialist
 sudo adduser --ingroup specialist otsomos   
 sudo adduser --ingroup specialist sjobrar  
 sudo adduser --ingroup specialist vahakei  
-sudo adduser --ingroup specialist esimeer
+sudo adduser --ingroup specialist esimeer  
 sudo adduser --ingroup specialist mallima  
   
 pajunmi@2021lab:\~$ groups otsomos sjobrar vahakei esimeer mallima  
