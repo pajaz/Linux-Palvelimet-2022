@@ -37,16 +37,16 @@ sed joka rivinumeroiden avulla trimmaa halutut rivit haluttuun tiedostoon.
 * Vaatii toimiakseen staattisen sivun.  
   
 Komennon määritys kaikille käyttäjille (tiedosto on jo tässä vaiheessa luotuna):  
-pajazzo@derpface:~/.myscripts$ ls -l  
+pajazzo@derpface:\~/.myscripts$ ls -l  
 total 4  
 -rw-r--r-- 1 pajazzo pajazzo 1924 Mar 14 12:49 fhwk  
-pajazzo@derpface:~/.myscripts$ chmod 755 fhwk   
-pajazzo@derpface:~/.myscripts$ ls -l  
+pajazzo@derpface:\~/.myscripts$ chmod 755 fhwk   
+pajazzo@derpface:\~/.myscripts$ ls -l  
 total 4  
 -rwxr-xr-x 1 pajazzo pajazzo 1924 Mar 14 12:49 fhwk  
-pajazzo@derpface:~/.myscripts$ ls -l /usr/local/bin/ | grep fhwk  
+pajazzo@derpface:\~/.myscripts$ ls -l /usr/local/bin/ | grep fhwk  
 -rwxr-xr-x 1 pajazzo pajazzo 1924 Mar 14 12:49 fhwk  
-pajazzo@derpface:~/.myscripts$ fhwk  
+pajazzo@derpface:\~/.myscripts$ fhwk  
 Fetching site: https://terokarvinen.com/2021/data-security-2022p3-ict4tf022-3008/  
 Output file: fhwkDefault.md  
   
